@@ -47,59 +47,28 @@
       <div class="site-mobile-menu-body"></div>
     </div>
    
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
+      <a class="navbar-brand h1" href="index.html">Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-
-          <div class="col-4">
-            <h1 class="m-0 site-logo"><a href="index.html">Services</a></h1>
-          </div>
-
-          <div class="col-8">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="#about-section" class="nav-link">About</a></li>
-                <li><a href="#services-section" class="nav-link">Services</a></li>
-                <!--<li><a href="#projects-section" class="nav-link">Projects</a></li>-->
-                <li><a href="index.html" class="nav-link">Advertisements</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-              </ul>
-            </nav>
-
-
-            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
-
-          </div>
-
-        
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item p-10">
+            <a class="nav-link" href="index.php">Home</a>
+          </li>
+          <li class="nav-item active p-10">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="contact.php">Contact</a>
+          </li>
+        </ul>
         </div>
-      </div>
-      
-    </header>
+    </nav>
 
     
-    <div class="site-blocks-cover overlay bg-light" style="background-image: url('images/hero_bg_1.jpg'); " id="home-section">
-
-      <div class="container">
-        <div class="row justify-content-center">
-
-          <div class="col-12 text-center align-self-center text-intro">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <h1 class="text-white" data-aos="fade-up" data-aos-delay="">We Are Digital Services</h1>
-                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magnam maxime voluptates libero, nobis impedit aut corrupti sunt possimus.</p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="index.html" class="btn smoothscroll btn-primary">Our Advertisements</a></p>
-
-              </div>
-            </div>
-          </div>
-            
-        </div>
-      </div>
-
-    </div>  
 
     <div class="site-section" id="about-section">
       <div class="container">
@@ -214,7 +183,7 @@
         <div class="row mb-5">
           <div class="col-md-3">
             <h3 class="footer-title">For Advertising<br> click below </h3>
-            <p><a class="btn bule" href="contact.html">Contact Us</a></p>
+            <p><a class="btn bule" href="contact.php">Contact Us</a></p>
           </div>
           <div class="col-md-5 mx-auto">
             <div class="row">

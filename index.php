@@ -47,7 +47,27 @@
       <div class="site-mobile-menu-body"></div>
     </div>
    
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+   <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
+      <a class="navbar-brand h1" href="index.html">Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item p-10 active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="about_us.php">About</a>
+          </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="contact.php">Contact</a>
+          </li>
+        </ul>
+        </div>
+    </nav>
+    <!--<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
       <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -56,13 +76,13 @@
             <h1 class="m-0 site-logo"><a href="index.html">Services</a></h1>
           </div>
 
-          <div class="col-8" >
+          <div class="col-8">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="#home-section" class="nav-link">Home</a></li>
-                <li><a href="about_us.php" class="nav-link">About</a></li>
+                <li><a href="about us.html" class="nav-link">About</a></li>
                 <li><a href="#blog-section" class="nav-link">Advertisements</a></li>
-                <li><a href="contact.php" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
               </ul>
             </nav>
 
@@ -75,7 +95,7 @@
         </div>
       </div>
       
-    </header>
+    </header>-->
 
 
     <div class="site-blocks-cover overlay bg-light" style="background-image: url('images/hero_bg_1.jpg'); " id="home-section">
