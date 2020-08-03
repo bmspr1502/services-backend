@@ -11,12 +11,37 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $youtube = $con->real_escape_string($_POST["youtube"]);
     $website = $con->real_escape_string($_POST["website"]);
 
+    $file = $_FILES["image"];
+    
+    $filename = $_FILES['image']['name'];
+    $filetmp = $_FILES['image']['tmp_name'];
+    $filesize = $_FILES['image']['size'];
+    $fileerror = $_FILES['image']['error'];
+    $filetype = $_FILES['image']['type'];
+    
+    $fileext = explode('.', $filename);
+    $fileactualext = strtolower(end($fileext));
+
+    $allowed = array('jpg', 'jpeg', 'png');
+    if(in_array($fileactualext, $allowed)){
+        if($fileerror === 0){
+                $filenamenew = uniqid('', true).".".$fileactualext;
+                $filedestination = 'uploaded_images/'.$filenamenew;
+                move_uploaded_file($filetmp, $filedestination);
+        }
+        else{
+            echo "There was an error uploading your file";
+        }
+    }
+    else{
+        echo "You cannot upload files of this type!";
+    }
 
 
-    $query = "INSERT INTO contact (name,email,phone,product,brand,description,youtube,website)VALUES (?,?,?,?,?,?,?,?)";
+    $query = "INSERT INTO contact (name,email,phone,image,product,brand,description,youtube,website)VALUES (?,?,?,?,?,?,?,?,?)";
     $statement= $con->prepare($query);
     if ($statement) {
-        $statement->bind_param('ssssssss', $name, $email, $phone, $product, $brand, $description, $youtube, $website);
+        $statement->bind_param('sssssssss', $name, $email, $phone, $filenamenew, $product, $brand, $description, $youtube, $website);
         $statement->execute();
         echo "<script>";
         echo "alert('Message sent successfully!!');";
@@ -32,4 +57,5 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 
     mysqli_close($con);
 }
+
 ?>

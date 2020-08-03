@@ -80,53 +80,59 @@
         </div>
         <div class="row justify-content-between">
           <div class="col-lg-6">
-            <form action="send_details.php" class="form" method = "post">
+            <form action="send_details.php" class="form" method = "post" enctype = "multipart/form-data">
                 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Name" name = "name">
+                  <input type="text" class="form-control" placeholder="Name" name = "name" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="email" class="form-control" placeholder="Email address" name = "email">
+                  <input type="email" class="form-control" placeholder="Email address" name = "email" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Phone number" name = "phone">
+                  <input type="text" class="form-control" placeholder="Phone number" name = "phone" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Product name" name = "product">
+                  <input type="file" class="form-control" name = "image" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Brand" name = "brand">
+                  <input type="text" class="form-control" placeholder="Product name" name = "product" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <textarea cols="30" rows="10" class="form-control" placeholder="Description" name = "description"></textarea>
+                  <input type="text" class="form-control" placeholder="Brand" name = "brand" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Youtube link" name = "youtube">
+                  <textarea cols="30" rows="10" class="form-control" placeholder="Description" name = "description" required></textarea>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Website address" name = "website">
+                  <input type="url" class="form-control" placeholder="Youtube link" name = "youtube" required>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="form-group col-12">
+                  <input type="url" class="form-control" placeholder="Website address" name = "website" required>
                 </div>
               </div>
 
