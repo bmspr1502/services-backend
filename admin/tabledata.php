@@ -43,7 +43,12 @@ if($result->num_rows > 0){
                     echo "<button class=\"btn btn-danger\" onclick=\"changeVisibility(" . $row['id'] .", ".$row['visibility']." )\" >";
                     echo "Not Visible";
                 }
-                    ?></button></td>
+                    ?></button>
+                <br>
+                <form action="update_card.php" method="post">
+                    <textarea name="values" style="display: none"><?php echo addslashes(json_encode($row));?></textarea>
+                    <input type="submit" value="Edit" name="edit" class="btn btn-warning">
+                </form></td>
             </tr>
             <?php
         }
