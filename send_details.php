@@ -1,28 +1,35 @@
 <?php
-$name = $_POST["name"];
-$email = $_POST["email"];
-$phone = $_POST["phone"];
-$product = $_POST["product"];
-$brand = $_POST["brand"];
-$description = $_POST["description"];
-$youtube = $_POST["youtube"];
-$website = $_POST["website"];
+if($_SERVER['REQUEST_METHOD']=='POST') {
+    include './admin/DB.php';
 
-$con = mysqli_connect("localhost", "root", "", "services");
-$sql = "INSERT INTO contact (name,email,phone,product,brand,description,youtube,website)VALUES ('$name','$email','$phone','$product','$brand','$description','$youtube','$website')";
-$query = mysqli_query($con,$sql);
-if (mysqli_connect_errno()){
-    echo "<script>";
-	echo "alert('Oops, message not sent...try again!!');";
-	echo "window.location.href = 'contact.php';";
-	echo "</script>";
-}
-else{
-    echo "<script>";
-	echo "alert('Message sent successfully!!');";
-	echo "window.location.href = 'index.php';";
-	echo "</script>";
-}
+    $name = $con->real_escape_string($_POST["name"]);
+    $email = $con->real_escape_string($_POST["email"]);
+    $phone = $con->real_escape_string($_POST["phone"]);
+    $product = $con->real_escape_string($_POST["product"]);
+    $brand = $con->real_escape_string($_POST["brand"]);
+    $description = $con->real_escape_string($_POST["description"]);
+    $youtube = $con->real_escape_string($_POST["youtube"]);
+    $website = $con->real_escape_string($_POST["website"]);
 
-mysqli_close($con);
+
+
+    $query = "INSERT INTO contact (name,email,phone,product,brand,description,youtube,website)VALUES (?,?,?,?,?,?,?,?)";
+    $statement= $con->prepare($query);
+    if ($statement) {
+        $statement->bind_param('ssssssss', $name, $email, $phone, $product, $brand, $description, $youtube, $website);
+        $statement->execute();
+        echo "<script>";
+        echo "alert('Message sent successfully!!');";
+        echo "window.location.href = 'index.php';";
+        echo "</script>";
+    } else {
+        echo "Error: ". $con->error;
+        echo "<script>";
+        echo "alert('Oops, message not sent...try again!!');";
+        echo "window.location.href = 'contact.php';";
+        echo "</script>";
+    }
+
+    mysqli_close($con);
+}
 ?>

@@ -1,3 +1,24 @@
+<?php
+session_start();
+if(isset($_POST['refresh'])){
+    unset($_COOKIE['ads']);
+}
+if(!isset($_COOKIE['ads'])) {
+    include './admin/DB.php';
+    $query = "SELECT * FROM contact WHERE VISIBILITY = 1";
+    $result = $con->query($query);
+    $ads = array();
+    while($data = $result->fetch_assoc()){
+        array_push($ads, $data);
+    }
+    setcookie('ads', json_encode($ads), time()+86400);
+    $con->close();
+    header('Location: index.php');
+}else{
+    $ads = json_decode($_COOKIE['ads'], true);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -123,13 +144,36 @@
 
     
     <section class="site-section bg-light" id="blog-section">
-      <div class="container">
+        <form action="index.php" method="post">
+            <input class="float-right btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
+        </form>
+        <div class="container">
         <div class="row">
-          
+
           <div class="col-12 mb-5 position-relative">
             <h2 class="section-title text-center mb-5">Advertisements</h2>
           </div>
-
+            <?php
+            foreach ($ads as $item){
+                ?>
+                <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+                    <div class="blog_entry">
+                        <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                        <div class="p-4 bg-white">
+                            <h3><?php echo $item['product'];?></h3>
+                            <span class="date"><?php echo $item['brand'];?></span>
+                            <p><?php echo stripslashes($item['description']);?></p>
+                            <span class="date">Adv by: <?php echo $item['name'];?></span>
+                            <span class="date">Contact Me at: +91<?php echo $item['phone'];?></span>
+                            <p><span class="icon-youtube red"></span><a class="red" href="<?php echo $item['youtube'];?>" target="_blank"><strong>Youtube</strong></a></p>
+                            <p><a class="btn b-btn" target="_blank" href="<?php echo $item['website'];?>">View Our Site</a></p>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+            <!--
           <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
             <div class="blog_entry">
               <a href="#"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
@@ -168,53 +212,33 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="container">
-        <div class="row">
-          
-          <div class="col-12 mb-5 position-relative">
-          </div>
-
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_14.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Fastrack solo track watch</a></h3>
-                <span class="date">Brand: Fastrack</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View Site</a></p>
-              </div>
+            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+                <div class="blog_entry">
+                    <a href="#"><img src="images/img_14.jpg" alt="Image" class="img-fluid"></a>
+                    <div class="p-4 bg-white">
+                        <h3><a href="#">Fastrack solo track watch</a></h3>
+                        <span class="date">Brand: Fastrack</span>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
+                        <p><a class="btn b-btn" href="#">View Site</a></p>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Birthday Greeting Card</a></h3>
-                <span class="date">Brand: Green prints</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View site</a></p>
-              </div>
+            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+                <div class="blog_entry">
+                    <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
+                    <div class="p-4 bg-white">
+                        <h3><a href="#">Birthday Greeting Card</a></h3>
+                        <span class="date">Brand: Green prints</span>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
+                        <p><a class="btn b-btn" href="#">View site</a></p>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <!--<div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="single.html">Shampoo and Conditioner Combo</a></h3>
-                <span class="date">Brand: Vivel</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube"></span><a href="#">Youtube</a></p>
-                <p><a class="btn b-btn" href="#">Visit Site</a></p>
-              </div>
-            </div>
-          </div>-->
+            -->
         </div>
       </div>
     </section>
