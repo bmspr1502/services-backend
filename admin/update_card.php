@@ -33,21 +33,19 @@ if(isset($_POST['edit'])){
 
                 <div class="row mb-4">
                     <div class="form-group col-12">
-                        <input type="email" class="form-control" placeholder="Email address" name = "email" value="<?php echo $values['email'];?>" required>
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="form-group col-12">
                         <input type="text" class="form-control" placeholder="Phone number" name = "phone" value="<?php echo $values['phone'];?>"required>
                     </div>
                 </div>
 
-                <!--div class="row mb-4">
-                    <div class="form-group col-12">
-                        <input type="file" class="form-control" name = "image" required>
+                <div class="row mb-4">
+                    <div class="form-group col-8">
+                        <input type="file" class="form-control" name = "image">
+                        <input type="hidden" name="earlier_image" value="<?php echo $values['image']?>">
                     </div>
-                </div>-->
+                    <div class="card float-right col-4">
+                        <img src="../uploaded_images/<?php echo $values['image']?>" alt="Image" class="img-fluid">
+                    </div>
+                </div>
 
                 <div class="row mb-4">
                     <div class="form-group col-12">

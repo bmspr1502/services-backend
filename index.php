@@ -138,15 +138,15 @@ if(!isset($_COOKIE['ads'])) {
         </div>
       </div>
 
-    </div>  
+    </div>
 
-    
 
+      <form action="index.php" method="post">
+          <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
+      </form>
     
     <section class="site-section bg-light" id="blog-section">
-        <form action="index.php" method="post">
-            <input class="float-right btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-        </form>
+
         <div class="container">
         <div class="row">
 
@@ -158,7 +158,7 @@ if(!isset($_COOKIE['ads'])) {
                 ?>
                 <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
                     <div class="blog_entry">
-                        <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                        <img src="uploaded_images/<?php echo $item['image']?>" alt="Image" onerror="this.onerror = null; this.src='uploaded_images/default.jpg'" class="img-fluid">
                         <div class="p-4 bg-white">
                             <h3><?php echo $item['product'];?></h3>
                             <span class="date"><?php echo $item['brand'];?></span>

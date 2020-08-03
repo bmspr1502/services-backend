@@ -14,11 +14,11 @@ session_start();
 
 <body>
 
-<div class="container">
+<div class="container-fluid">
     <h1>
         The Datas visible
     </h1>
-    <div class="card" id="data" style="overflow-x: auto">
+    <div id="data" style="overflow-x: auto">
     </div>
     <p id="message"></p>
 </div>

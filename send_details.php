@@ -12,50 +12,54 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $website = $con->real_escape_string($_POST["website"]);
 
     $file = $_FILES["image"];
-    
-    $filename = $_FILES['image']['name'];
-    $filetmp = $_FILES['image']['tmp_name'];
-    $filesize = $_FILES['image']['size'];
-    $fileerror = $_FILES['image']['error'];
-    $filetype = $_FILES['image']['type'];
-    
-    $fileext = explode('.', $filename);
-    $fileactualext = strtolower(end($fileext));
+    if(isset($file)) {
+        $filename = $_FILES['image']['name'];
+        $filetmp = $_FILES['image']['tmp_name'];
+        $filesize = $_FILES['image']['size'];
+        $fileerror = $_FILES['image']['error'];
+        $filetype = $_FILES['image']['type'];
 
-    $allowed = array('jpg', 'jpeg', 'png');
-    if(in_array($fileactualext, $allowed)){
-        if($fileerror === 0){
-                $filenamenew = uniqid('', true).".".$fileactualext;
-                $filedestination = 'uploaded_images/'.$filenamenew;
+        $fileext = explode('.', $filename);
+        $fileactualext = strtolower(end($fileext));
+
+        $allowed = array('jpg', 'jpeg', 'png');
+        if (in_array($fileactualext, $allowed)) {
+            if ($fileerror === 0) {
+                $filenamenew = uniqid('', true) . "." . $fileactualext;
+                $filedestination = 'uploaded_images/' . $filenamenew;
                 move_uploaded_file($filetmp, $filedestination);
-        }
-        else{
-            echo "There was an error uploading your file";
+            } else {
+                echo "<script>";
+                echo "alert('Image not uploaded...try again!!');";
+                echo "window.location.href = 'contact.php';";
+                echo "</script>";
+                die('Not Uploaded');
+            }
+        } else {
+            echo "<script>";
+            echo "alert('File type not supported...try again!!');";
+            echo "window.location.href = 'contact.php';";
+            echo "</script>";
+            die('Not Uploaded');
         }
     }
-    else{
-        echo "You cannot upload files of this type!";
-    }
 
-
-    $query = "INSERT INTO contact (name,email,phone,image,product,brand,description,youtube,website)VALUES (?,?,?,?,?,?,?,?,?)";
-    $statement= $con->prepare($query);
-    if ($statement) {
-        $statement->bind_param('sssssssss', $name, $email, $phone, $filenamenew, $product, $brand, $description, $youtube, $website);
-        $statement->execute();
+    $query = "INSERT INTO contact (name,email,phone,image,product,brand,description,youtube,website)" .
+            " VALUES ('$name', '$email', '$phone', '$filenamenew', '$product', '$brand', '$description', '$youtube', '$website')";
+    if ($con->query($query)) {
         echo "<script>";
-        echo "alert('Message sent successfully!!');";
+        echo "alert('Details sent to database successfully!!');";
         echo "window.location.href = 'index.php';";
         echo "</script>";
     } else {
         echo "Error: ". $con->error;
         echo "<script>";
-        echo "alert('Oops, message not sent...try again!!');";
+        echo "alert('Oops, details not sent, email already exists...try again!!');";
         echo "window.location.href = 'contact.php';";
         echo "</script>";
     }
 
-    mysqli_close($con);
+    $con->close();
 }
 
 ?>
