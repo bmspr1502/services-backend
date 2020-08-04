@@ -50,7 +50,7 @@ session_start();
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.html">Services</a>
+      <a class="navbar-brand h1" href="index.php">Services</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -88,67 +88,82 @@ session_start();
                 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Name" name = "name" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['name'];}?>" required>
+                  <input type="text" class="form-control" placeholder="Name" id="input_name" name = "name" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['name'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="email" class="form-control" placeholder="Email address" name = "email" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['email'];}?>"required>
+                  <input type="email" class="form-control" placeholder="Email address" id="input_email" name = "email" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['email'];}?>"required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Phone number" name = "phone" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['phone'];}?>"required>
+                  <input type="text" class="form-control" placeholder="Phone number" id="input_phone" name = "phone" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['phone'];}?>"required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="file" class="form-control" name = "image" required>
+                  <input type="file" class="form-control" onchange="updateImage(event)"  name = "image" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Product name" name = "product" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['product'];}?>" required>
+                  <input type="text" class="form-control" placeholder="Product name" id="input_product" name = "product" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['product'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Brand" name = "brand" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['brand'];}?>" required>
+                  <input type="text" class="form-control" placeholder="Brand" id="input_brand" name = "brand" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['brand'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <textarea cols="30" rows="10" class="form-control" placeholder="Description" name = "description" required><?php if(isset($_SESSION['data'])){echo $_SESSION['data']['description'];}?></textarea>
+                  <textarea cols="30" rows="10" class="form-control" id="input_description" placeholder="Description" name = "description" required><?php if(isset($_SESSION['data'])){echo $_SESSION['data']['description'];}?></textarea>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Youtube link" name = "youtube" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['youtube'];}?>" required>
+                  <input type="url" class="form-control" placeholder="Youtube link" id="input_youtube" name = "youtube" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['youtube'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Website address" name = "website" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['website'];}?>" required>
+                  <input type="url" class="form-control" placeholder="Website address" id="input_website" name = "website" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['website'];}?>" required>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <input type="submit" class="btn btn-primary" value="Send Message">
+
                 </div>
               </div>
               <?php if(isset($_SESSION['data'])){ unset($_SESSION['data']);} ?>
             </form>
           </div>
+
           <div class="col-lg-5">
+              <button type="button" id="preview" class="btn btn-success float-right" onclick="showCard()">Preview Card</button>
+              <div class="blog_entry" id="card" style="display: none">
+                  <img src="" alt="Image" id="card_image" onerror="this.onerror = null; this.src='uploaded_images/default.jpg'" class="img-fluid">
+                  <div class="p-4 bg-white">
+                      <h3 id="card_product"></h3>
+                      <span class="date" id="card_brand"></span>
+                      <p id="card_description"></p>
+                      <span class="date" >Adv by: <span id="card_name"></span></span>
+                      <span class="date">Contact Me at: +91<span id="card_phone"></span></span>
+                      <p><span class="icon-youtube red"></span><a class="red" id="card_youtube" disabled="" href="#"><strong>Youtube</strong></a></p>
+                      <p><a class="btn b-btn" id="card_website" href="">View Our Site</a></p>
+                  </div>
+              </div>
             <h3>London</h3>
             <ul class="list-unstyled mb-5">
               <li class="mb-3">
@@ -247,6 +262,56 @@ session_start();
 
   </div> <!-- .site-wrap -->
 
+  <script type="text/javascript">
+      let count=0;
+      var showCard = function (){
+          count++;
+          if(count%2===1){
+              document.getElementById('card').style.display='block';
+              document.getElementById('preview').className = 'btn btn-danger float-right';
+              document.getElementById('preview').innerHTML = 'Close Preview';
+              updateCard();
+          }else{
+              document.getElementById('card').style.display='none';
+              document.getElementById('preview').className = 'btn btn-success float-right';
+              document.getElementById('preview').innerHTML = 'Preview Card';
+              updateCard();
+          }
+      };
+      function updateCard(){
+          let name = document.getElementById('input_name').value;
+          //let email = document.getElementById('input_email').value;
+          let phone = document.getElementById('input_phone').value;
+          let product = document.getElementById('input_product').value;
+          let brand = document.getElementById('input_brand').value;
+          let description = document.getElementById('input_description').value;
+          let youtube = document.getElementById('input_youtube').value;
+          let website = document.getElementById('input_website').value;
+
+          document.getElementById('card_name').innerHTML = name;
+          document.getElementById('card_phone').innerHTML = phone;
+          document.getElementById('card_product').innerHTML = product;
+          document.getElementById('card_brand').innerHTML = brand;
+          document.getElementById('card_description').innerHTML = description;
+          if(youtube===''){
+              document.getElementById('card_youtube').className = 'disabled';
+              document.getElementById('card_youtube').disabled = 'disabled';
+              document.getElementById('card_youtube').href="javascript:function() { return false; }";
+          }else {
+              document.getElementById('card_youtube').className = 'red';
+              document.getElementById('card_youtube').disabled = '';
+              document.getElementById('card_youtube').href = youtube;
+          }
+          document.getElementById('card_website').href = website;
+      }
+      var updateImage = function(event) {
+          var output = document.getElementById('card_image');
+          output.src = URL.createObjectURL(event.target.files[0]);
+          output.onload = function() {
+              URL.revokeObjectURL(output.src) // free memory
+          }
+      };
+  </script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
