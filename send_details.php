@@ -1,4 +1,5 @@
 <?php
+session_start();
 if($_SERVER['REQUEST_METHOD']=='POST') {
     include './admin/DB.php';
 
@@ -29,6 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                 $filedestination = 'uploaded_images/' . $filenamenew;
                 move_uploaded_file($filetmp, $filedestination);
             } else {
+                $_SESSION['data'] = $_POST;
                 echo "<script>";
                 echo "alert('Image not uploaded...try again!!');";
                 echo "window.location.href = 'contact.php';";
@@ -36,6 +38,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                 die('Not Uploaded');
             }
         } else {
+            $_SESSION['data'] = $_POST;
             echo "<script>";
             echo "alert('File type not supported...try again!!');";
             echo "window.location.href = 'contact.php';";
@@ -53,6 +56,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         echo "</script>";
     } else {
         echo "Error: ". $con->error;
+        $_SESSION['data'] = $_POST;
         echo "<script>";
         echo "alert('Oops, details not sent, email already exists...try again!!');";
         echo "window.location.href = 'contact.php';";

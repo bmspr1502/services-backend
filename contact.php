@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Services</title>
+    <title>Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -76,6 +79,7 @@
         <div class="row">
           <div class="col-12 mb-5 position-relative">
             <h2 class="section-title text-center mb-5">Contact Form</h2>
+              <p><?php if(isset($_SESSION['data'])){ echo "Your data was not entered properly, review and submit again";}?></p>
           </div>
         </div>
         <div class="row justify-content-between">
@@ -84,19 +88,19 @@
                 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Name" name = "name" required>
+                  <input type="text" class="form-control" placeholder="Name" name = "name" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['name'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="email" class="form-control" placeholder="Email address" name = "email" required>
+                  <input type="email" class="form-control" placeholder="Email address" name = "email" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['email'];}?>"required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Phone number" name = "phone" required>
+                  <input type="text" class="form-control" placeholder="Phone number" name = "phone" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['phone'];}?>"required>
                 </div>
               </div>
 
@@ -108,31 +112,31 @@
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Product name" name = "product" required>
+                  <input type="text" class="form-control" placeholder="Product name" name = "product" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['product'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="text" class="form-control" placeholder="Brand" name = "brand" required>
+                  <input type="text" class="form-control" placeholder="Brand" name = "brand" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['brand'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <textarea cols="30" rows="10" class="form-control" placeholder="Description" name = "description" required></textarea>
+                  <textarea cols="30" rows="10" class="form-control" placeholder="Description" name = "description" required><?php if(isset($_SESSION['data'])){echo $_SESSION['data']['description'];}?></textarea>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Youtube link" name = "youtube" required>
+                  <input type="url" class="form-control" placeholder="Youtube link" name = "youtube" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['youtube'];}?>" required>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="form-group col-12">
-                  <input type="url" class="form-control" placeholder="Website address" name = "website" required>
+                  <input type="url" class="form-control" placeholder="Website address" name = "website" value="<?php if(isset($_SESSION['data'])){echo $_SESSION['data']['website'];}?>" required>
                 </div>
               </div>
 
@@ -141,7 +145,7 @@
                   <input type="submit" class="btn btn-primary" value="Send Message">
                 </div>
               </div>
-              
+              <?php if(isset($_SESSION['data'])){ unset($_SESSION['data']);} ?>
             </form>
           </div>
           <div class="col-lg-5">

@@ -43,14 +43,14 @@ if(isset($_POST['update'])) {
             } else {
                 echo "<script>";
                 echo "alert('Image not uploaded...try again!!');";
-                echo "window.location.href = 'contact.php';";
+                echo "window.location.href = 'card.php';";
                 echo "</script>";
                 die('Not Uploaded');
             }
         } else {
             echo "<script>";
             echo "alert('File type not supported...try again!!');";
-            echo "window.location.href = 'contact.php';";
+            echo "window.location.href = 'card.php';";
             echo "</script>";
             die('Not Uploaded');
         }

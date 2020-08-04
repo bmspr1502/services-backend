@@ -32,7 +32,7 @@ if($result->num_rows > 0){
                 <td><?php echo $row['email'];?></td>
                 <td><?php echo $row['phone'];?></td>
                 <td><?php echo $row['product'];?></td>
-                <td><img class="img-fluid" src="../uploaded_images/<?php echo $row['image'];?>" alt="Image Not Found"></td>
+                <td><img class="img-fluid" src="../uploaded_images/<?php echo $row['image'];?>" alt="Image Not Found" onerror="this.src='../uploaded_images/default.jpg'"></td>
                 <td><?php echo $row['brand'];?></td>
                 <td><?php echo $row['description'];?></td>
                 <td><a href="<?php echo $row['youtube'];?>" target="_blank" class="btn btn-danger">Youtube</a></td>
