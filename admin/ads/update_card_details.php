@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['update'])) {
-    include 'DB.php';
+    include '../DB.php';
     $id = intval($_POST['id']);
     $name = $con->real_escape_string($_POST["name"]);
     $phone = $con->real_escape_string($_POST["phone"]);

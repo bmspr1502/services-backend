@@ -1,5 +1,5 @@
 <?php
-include 'DB.php';
+include '../DB.php';
 $query = "SELECT * FROM contact";
 $result = $con->query($query);
 

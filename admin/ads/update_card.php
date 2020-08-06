@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['edit'])){
     $values = json_decode(stripslashes($_POST['values']), true);
-    include 'DB.php';
+    include '../DB.php';
 
     ?>
     <!DOCTYPE html>

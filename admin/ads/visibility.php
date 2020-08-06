@@ -2,7 +2,7 @@
 if(isset($_REQUEST['id'])) {
     $id = $_REQUEST['id'];
     $visibility = $_REQUEST['visibility'];
-    include 'DB.php';
+    include '../DB.php';
     if($visibility==1) {
         $query = "UPDATE contact SET visibility=0 where id=$id";
     }else{

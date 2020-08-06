@@ -2,7 +2,7 @@
 if(isset($_POST['delete'])){
     $id = $_POST['id'];
     $image = $_POST['image'];
-    include 'DB.php';
+    include '../DB.php';
     $query = "DELETE FROM contact WHERE id = $id";
 
     if(file_exists('../uploaded_images/'.$image)){
