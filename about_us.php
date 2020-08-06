@@ -1,3 +1,8 @@
+<?php
+include 'admin/services/servicedetails.php';
+include 'admin/about/aboutusDetails.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,20 +79,18 @@
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-4 position-relative">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title"><?php echo $row['title'];?></h2>
           </div>
           <div class="col-lg-4">
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+            <p><?php echo $row['leftcontent'];?></p>
 
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+          
           </div>
           <div class="col-lg-4">
-            <img src="images/about.jpg" alt="Image" class="img-fluid">
+            <img src="<?php echo $row['image'];?>" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4">
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-            <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>
+          <p><?php echo $row['rightcontent'];?></p>
           </div>
           
           
@@ -100,32 +103,45 @@
           <div class="col-12 mb-5 position-relative">
             <h2 class="section-title text-center mb-5">Services</h2>
           </div>
-          
+          <?php
+          for($x=0;$x<$len;$x++){
+
+            if($x%2==0){
+              ?>
           <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
             <div class="service d-flex h-100">
               <div class="svg-icon">
                 <img src="images/flaticon/svg/002-travel-1.svg" alt="Image" class="img-fluid">
               </div>
               <div class="service-about">
-                <h3>Content Marketing</h3>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h3><?php echo $values[$x]['title']?></h3>
+                <p><?php echo $values[$x]['description']?></p>
               </div>
             </div>
           </div>
-
+          
+          <?php
+            }
+            else{
+              ?>
+          
           <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
             <div class="service d-flex h-100">
               <div class="svg-icon">
-                <img src="images/flaticon/svg/001-travel.svg" alt="Image" class="img-fluid">
+                <img src="images/flaticon/svg/<?php echo $values[$x]['logo'];?>" alt="Image" class="img-fluid">
               </div>
               <div class="service-about">
-                <h3>Social Media Marketing</h3>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h3><?php echo $values[$x]['title'];?></h3>
+                <p><?php echo $values[$x]['description'];?></p>
               </div>
             </div>
           </div>
+          <?php
+            }
+          }
+            ?>
 
-          <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
+          <!--<div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
             <div class="service d-flex h-100">
               <div class="svg-icon">
                 <img src="images/flaticon/svg/003-travel-2.svg" alt="Image" class="img-fluid">
@@ -171,7 +187,7 @@
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               </div>
             </div>
-          </div>
+          </div>-->
 
         </div>
       </div>

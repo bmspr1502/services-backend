@@ -1,5 +1,5 @@
 <?php
-include 'DB.php';
+include(dirname(__FILE__) . '/../DB.php');
 $query = "SELECT * FROM contact";
 $result = $con->query($query);
 
@@ -47,12 +47,12 @@ if($result->num_rows > 0){
                 }
                     ?></button>
                 <br><br>
-                <form action="update_card.php" method="post">
+                <form action="ads/update_card.php" method="post">
                     <textarea name="values" style="display: none"><?php echo addslashes(json_encode($row));?></textarea>
                     <input type="submit" value="Edit" name="edit" class="btn btn-warning">
                 </form>
                 <br>
-                <form action="delete_card.php" method="post">
+                <form action="ads/delete_card.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id'];?>">
                     <input type="hidden" name="image" value="<?php echo $row['image'];?>">
                     <input type="submit" value="Delete" name="delete" class="btn btn-light">

@@ -34,7 +34,7 @@ session_start();
                 document.getElementById('data').innerHTML = this.responseText;
             }
         };
-        xmlhttp.open('GET', 'tabledata.php', true);
+        xmlhttp.open('GET', 'ads/tabledata.php', true);
         xmlhttp.send();
     }
 
@@ -45,7 +45,7 @@ session_start();
                 document.getElementById('message').innerHTML = this.responseText;
             }
         };
-        xmlhttp.open('GET', 'visibility.php?id='+id+'&visibility='+visibility, true);
+        xmlhttp.open('GET', 'ads/visibility.php?id='+id+'&visibility='+visibility, true);
         xmlhttp.send();
         setTimeout(
             function () {

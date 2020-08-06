@@ -1,26 +1,7 @@
 <?php
 session_start();
-/*
-if(isset($_POST['refresh'])){
-    unset($_COOKIE['ads']);
-}
-if(!isset($_COOKIE['ads'])) {
-*/
-    include './admin/DB.php';
-    $query = "SELECT * FROM contact WHERE VISIBILITY = 1";
-    $result = $con->query($query);
-    $ads = array();
-    while($data = $result->fetch_assoc()){
-        array_push($ads, $data);
-    }
-    //setcookie('ads', json_encode($ads), time()+86400);
-    $con->close();
-    //header('Location: index.php');
-    /*
-}else{
-    $ads = json_decode($_COOKIE['ads'], true);
-}
-*/
+include 'admin/homepage/Homedetails.php';
+include 'admin/ads/cards_details.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +53,7 @@ if(!isset($_COOKIE['ads'])) {
     </div>
    
    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.html">Services</a>
+      <a class="navbar-brand h1" href="index.html"><?php echo $title?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -130,8 +111,8 @@ if(!isset($_COOKIE['ads'])) {
           <div class="col-12 text-center align-self-center text-intro">
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <h1 class="text-white" data-aos="fade-up" data-aos-delay="">We Are Digital Services</h1>
-                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magnam maxime voluptates libero, nobis impedit aut corrupti sunt possimus.</p>
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay=""><?php echo $heading?></h1>
+                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100"><?php echo $content?></p>
                 <p data-aos="fade-up" data-aos-delay="200"><a href="#blog-section" class="btn smoothscroll btn-primary">Our Advertisements</a></p>
 
               </div>
@@ -144,9 +125,9 @@ if(!isset($_COOKIE['ads'])) {
     </div>
 
 
-      <!--form action="index.php" method="post">
+      <form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-      </form -->
+      </form>
     
     <section class="site-section bg-light" id="blog-section">
 
@@ -176,72 +157,7 @@ if(!isset($_COOKIE['ads'])) {
             <?php
             }
             ?>
-            <!--
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Fastrack solo track watch</a></h3>
-                <span class="date">Brand: Fastrack</span>
-                <p>This is new edition Waterproof watch with 64 feet water resistant and 90 years long lasting battery. it also comes with 1 year warrenty for battery. It is rated as the most comfortable to wear watch in India. Grab it soon. </p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View Site</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_13.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Birthday Greeting Card</a></h3>
-                <span class="date">Brand: Green prints</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><strong><a class="red" href="#">Youtube</a></strong></p>
-                <p><a class="btn b-btn" href="#">View site</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="single.html">Shampoo and Conditioner Combo</a></h3>
-                <span class="date">Brand: Vivel</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View Site</a></p>
-              </div>
-            </div>
-          </div>
-
-            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-                <div class="blog_entry">
-                    <a href="#"><img src="images/img_14.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="p-4 bg-white">
-                        <h3><a href="#">Fastrack solo track watch</a></h3>
-                        <span class="date">Brand: Fastrack</span>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                        <p><a class="btn b-btn" href="#">View Site</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-                <div class="blog_entry">
-                    <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="p-4 bg-white">
-                        <h3><a href="#">Birthday Greeting Card</a></h3>
-                        <span class="date">Brand: Green prints</span>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                        <p><a class="btn b-btn" href="#">View site</a></p>
-                    </div>
-                </div>
-            </div>
-            -->
+          
         </div>
       </div>
     </section>

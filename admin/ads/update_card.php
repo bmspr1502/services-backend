@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['edit'])){
     $values = json_decode(stripslashes($_POST['values']), true);
-    include 'DB.php';
+    include(dirname(__FILE__) . '/../DB.php');
 
     ?>
     <!DOCTYPE html>
@@ -10,7 +10,7 @@ if(isset($_POST['edit'])){
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Edit Row <?php echo $values['id'];?></title>
@@ -43,7 +43,7 @@ if(isset($_POST['edit'])){
                         <input type="hidden" name="earlier_image" value="<?php echo $values['image']?>">
                     </div>
                     <div class="card float-right col-4">
-                        <img src="../uploaded_images/<?php echo $values['image']?>" alt="Image" class="img-fluid">
+                        <img src="../../uploaded_images/<?php echo $values['image']?>" alt="Image" class="img-fluid">
                     </div>
                 </div>
 
