@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2020 at 08:12 PM
+-- Generation Time: Aug 06, 2020 at 09:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -67,15 +67,14 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `image`, `product`, `brand`, `description`, `youtube`, `website`, `visibility`) VALUES
-(1, 'PRANAVA RAMAN B M S', 'bmspr1502@gmail.com', '9443501317', '5f2861648f66a1.91227100.png', 'Thin and Light Laptop @₹39,990', 'Lenovo Ideapad S540', '15.6 inches\r\n8GB RAM\r\ni5 8th gen\r\n512 GB SSD\r\n2GB Dedicated Graphics', 'https://www.youtube.com/watch?v=d4nHHXMlmnI', 'https://www.lenovo.com/in/en/laptops/ideapad/s-series/Lenovo-IdeaPad-S540-14IWL/p/88IPS501190', 1),
-(2, 'ABC', 'abcd@gmail.com', '1234567890', '5f293a750d6a02.23907921.jpg', 'Random thing', 'Random Brand', 'This is just a random thing that\\\'s being sold for a random price', 'https://www.youtube.com/watch?v=hY7m5jjJ9mM', 'https://cat-bounce.com/', 1),
-(6, 'mark', 'bla@gmail.com', '9445644788', '', 'dhjsfbajshdbfa', 'edrfyghubjnkm', 'xxrcftgvhbjn', 'https://www.youtube.com/watch?v=yX6hXlRP_1c', 'https://www.w3schools.com/php/func_mysqli_connect_errno.asp', 1),
+(1, 'PRANAVA RAMAN B M S', 'bmspr1502@gmail.com', '9443501317', '5f2c5ac7362710.77435026.jpg', 'Thin and Light Laptop @₹39,990', 'Lenovo Ideapad S540', '15.6 inches\r\n8GB RAM\r\ni5 8th gen\r\n512 GB NVMe SSD\r\n2GB Dedicated Graphics', 'https://www.youtube.com/watch?v=d4nHHXMlmnI', 'https://www.lenovo.com/in/en/laptops/ideapad/s-series/Lenovo-IdeaPad-S540-14IWL/p/88IPS501190', 1),
+(2, 'ABC', 'abcd@gmail.com', '1234567890', '5f293a750d6a02.23907921.jpg', 'Random thing', 'Random Brand', 'This is just a random thing that\\\'s being sold for a random price<br>\r\nLalalala', 'https://www.youtube.com/watch?v=hY7m5jjJ9mM', 'https://cat-bounce.com/', 1),
+(6, 'mark', 'bla@gmail.com', '9445644788', '5f2c5ad6b5a0b5.28685738.jpg', 'dhjsfbajshdbfa', 'edrfyghubjnkm', 'xxrcftgvhbjn', 'https://www.youtube.com/watch?v=yX6hXlRP_1c', 'https://www.w3schools.com/php/func_mysqli_connect_errno.asp', 1),
 (7, 'mark', 'b@gmail.com', '9445644788', '', 'soap', 'pears', 'blah', 'https://www.youtube.com/watch?v=yX6hXlRP_1c', 'https://www.w3schools.com/php/func_mysqli_connect_errno.asp', 1),
 (8, 'Sree', 'a@gmail.com', '9445644788', '5f285a31769bc5.31944296.jpg', 'soap', 'pears', 'aaaaaaaaaaaaaaaaaa', 'https://www.youtube.com/watch?v=yX6hXlRP_1c', 'https://www.w3schools.com/php/func_mysqli_connect_errno.asp', 1),
 (13, 'Sree', 'c@gmail.com', '9445644788', '5f282444f1f3d7.23824462.png', 'dhjsfbajshdbfa', 'random', 'rtyu', 'https://www.youtube.com/watch?v=yX6hXlRP_1c', 'https://www.w3schools.com/php/func_mysqli_connect_errno.asp', 1),
 (17, 'Pranav', '', '9443501317', '5f285b64421819.84494186.jpg', 'CEG', 'College of Engineering, Guindy', 'The oldest technical institution outside, Europe.', 'https://www.youtube.com/watch?v=ZdVW60fsguQ', 'http://ceg.annauniv.edu/', 1),
-(21, 'G Hamsa Rani S', 'hamsasathyaram@gmail.com', '9442359937', '5f2ab54dbf7c41.26816446.jpg', 'Acer Aspire 5', 'Acer', 'Thin and Light laptop ', 'https://www.youtube.com/watch?v=l3hoa-stJs4', 'https://www.youtube.com', 1),
-(23, 'aiouiuidshfadf', 'bsdfj@gjab.com', '+919443501', '5f2c4240b8f950.94434641.jpg', 'Fastrack solo track watch', 'Fastrack', 'efasdfasdfadsfasdf', 'https://www.youtube.com/watch?v=z3U0udLH974', 'https://www.lenovo.com/in/en/laptops/ideapad/s-series/Lenovo-IdeaPad-S540-14IWL/p/88IPS501190', 1);
+(21, 'G Hamsa Rani S', 'hamsasathyaram@gmail.com', '9442359937', '5f2ab54dbf7c41.26816446.jpg', 'Acer Aspire 5', 'Acer', 'Thin and Light laptop ', 'https://www.youtube.com/watch?v=l3hoa-stJs4', 'https://www.youtube.com', 1);
 
 -- --------------------------------------------------------
 

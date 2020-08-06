@@ -1,27 +1,7 @@
 <?php
 session_start();
 include 'admin/homepage/Homedetails.php';
-/*
-if(isset($_POST['refresh'])){
-    unset($_COOKIE['ads']);
-}
-if(!isset($_COOKIE['ads'])) {
-*/
-    include './admin/DB.php';
-    $query = "SELECT * FROM contact WHERE VISIBILITY = 1";
-    $result = $con->query($query);
-    $ads = array();
-    while($data = $result->fetch_assoc()){
-        array_push($ads, $data);
-    }
-    //setcookie('ads', json_encode($ads), time()+86400);
-    $con->close();
-    //header('Location: index.php');
-    /*
-}else{
-    $ads = json_decode($_COOKIE['ads'], true);
-}
-*/
+include 'admin/ads/cards_details.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,9 +125,9 @@ if(!isset($_COOKIE['ads'])) {
     </div>
 
 
-      <!--form action="index.php" method="post">
+      <form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-      </form -->
+      </form>
     
     <section class="site-section bg-light" id="blog-section">
 
@@ -177,72 +157,7 @@ if(!isset($_COOKIE['ads'])) {
             <?php
             }
             ?>
-            <!--
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Fastrack solo track watch</a></h3>
-                <span class="date">Brand: Fastrack</span>
-                <p>This is new edition Waterproof watch with 64 feet water resistant and 90 years long lasting battery. it also comes with 1 year warrenty for battery. It is rated as the most comfortable to wear watch in India. Grab it soon. </p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View Site</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_13.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="#">Birthday Greeting Card</a></h3>
-                <span class="date">Brand: Green prints</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><strong><a class="red" href="#">Youtube</a></strong></p>
-                <p><a class="btn b-btn" href="#">View site</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-            <div class="blog_entry">
-              <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-              <div class="p-4 bg-white">
-                <h3><a href="single.html">Shampoo and Conditioner Combo</a></h3>
-                <span class="date">Brand: Vivel</span>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                <p><a class="btn b-btn" href="#">View Site</a></p>
-              </div>
-            </div>
-          </div>
-
-            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-                <div class="blog_entry">
-                    <a href="#"><img src="images/img_14.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="p-4 bg-white">
-                        <h3><a href="#">Fastrack solo track watch</a></h3>
-                        <span class="date">Brand: Fastrack</span>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                        <p><a class="btn b-btn" href="#">View Site</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
-                <div class="blog_entry">
-                    <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="p-4 bg-white">
-                        <h3><a href="#">Birthday Greeting Card</a></h3>
-                        <span class="date">Brand: Green prints</span>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><span class="icon-youtube red"></span><a class="red" href="#"><strong>Youtube</strong></a></p>
-                        <p><a class="btn b-btn" href="#">View site</a></p>
-                    </div>
-                </div>
-            </div>
-            -->
+          
         </div>
       </div>
     </section>
