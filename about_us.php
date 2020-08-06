@@ -1,6 +1,6 @@
 <?php
-include 'admin/admin_extensions/services/servicedetails.php';
-include 'admin/admin_extensions/about/aboutusDetails.php';
+include 'admin/services/servicedetails.php';
+include 'admin/about/aboutusDetails.php';
 ?>
 
 <!DOCTYPE html>

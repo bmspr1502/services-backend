@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'admin/admin_extensions/homepage/Homedetails.php';
+include 'admin/homepage/Homedetails.php';
 /*
 if(isset($_POST['refresh'])){
     unset($_COOKIE['ads']);
