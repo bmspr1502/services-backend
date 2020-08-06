@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'admin/admin_extensions/homepage/Homedetails.php';
 /*
 if(isset($_POST['refresh'])){
     unset($_COOKIE['ads']);
@@ -72,7 +73,7 @@ if(!isset($_COOKIE['ads'])) {
     </div>
    
    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.html">Services</a>
+      <a class="navbar-brand h1" href="index.html"><?php echo $title?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -130,8 +131,8 @@ if(!isset($_COOKIE['ads'])) {
           <div class="col-12 text-center align-self-center text-intro">
             <div class="row justify-content-center">
               <div class="col-lg-8">
-                <h1 class="text-white" data-aos="fade-up" data-aos-delay="">We Are Digital Services</h1>
-                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magnam maxime voluptates libero, nobis impedit aut corrupti sunt possimus.</p>
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay=""><?php echo $heading?></h1>
+                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100"><?php echo $content?></p>
                 <p data-aos="fade-up" data-aos-delay="200"><a href="#blog-section" class="btn smoothscroll btn-primary">Our Advertisements</a></p>
 
               </div>
