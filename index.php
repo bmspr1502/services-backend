@@ -1,9 +1,11 @@
 <?php
 session_start();
+/*
 if(isset($_POST['refresh'])){
     unset($_COOKIE['ads']);
 }
 if(!isset($_COOKIE['ads'])) {
+*/
     include './admin/DB.php';
     $query = "SELECT * FROM contact WHERE VISIBILITY = 1";
     $result = $con->query($query);
@@ -11,13 +13,14 @@ if(!isset($_COOKIE['ads'])) {
     while($data = $result->fetch_assoc()){
         array_push($ads, $data);
     }
-    setcookie('ads', json_encode($ads), time()+86400);
+    //setcookie('ads', json_encode($ads), time()+86400);
     $con->close();
-    header('Location: index.php');
+    //header('Location: index.php');
+    /*
 }else{
     $ads = json_decode($_COOKIE['ads'], true);
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,9 +144,9 @@ if(!isset($_COOKIE['ads'])) {
     </div>
 
 
-      <form action="index.php" method="post">
+      <!--form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-      </form>
+      </form -->
     
     <section class="site-section bg-light" id="blog-section">
 
