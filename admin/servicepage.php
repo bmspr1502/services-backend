@@ -116,6 +116,13 @@ $("#btnChangeLogo").click(function(){
     //     putForm();
     // }
     //temp=1;
+    // if(!$('#EditFormLogo')){
+    //     alert("Image field cannot be empty!");
+    // }
+    if ($('#EditFormLogo').get(0).files.length === 0){
+        alert("image field cannot be empty!");
+    }
+    else{
     var id=$("#ChangeId").text();
     var fd = new FormData();
     var files = $('#EditFormLogo')[0].files[0];
@@ -149,9 +156,13 @@ $("#btnChangeLogo").click(function(){
                 }
                
 
-                
+            }
+    
+   
+   
 
-            }});
+            });
+}
 
 
 
@@ -164,6 +175,10 @@ $("#btnEditTitle").click(function(){
 });
 $("#btnChangeTitle").click(function(){
     var title=$("#EditFormTitle").val();
+    if(title.length==0){
+        alert("Title field cannot be empty!");
+    }
+    else{
     $.post("services/ServiceTitleChange.php",{"title":title,"id":$("#ChangeId").text()},function(data){
         //alert(data);
         $("#btnChangeTitle").css("display","none");
@@ -172,6 +187,7 @@ $("#btnChangeTitle").click(function(){
         temp=1;
 
     });
+    }
 });
 
 $("#btnEditDescr").click(function(){
@@ -181,6 +197,10 @@ $("#btnEditDescr").click(function(){
 });
 $("#btnChangeDescr").click(function(){
     var descr=$("#EditFormDescr").val();
+    if(descr.length==0){
+        alert("description cannot be empty!");
+    }
+    else{
     $.post("services/ServiceDescrChange.php",{"descr":descr,"id":$("#ChangeId").text()},function(data){
         //alert(data);
         $("#btnChangeDescr").css("display","none");
@@ -189,6 +209,7 @@ $("#btnChangeDescr").click(function(){
         temp=1;
 
     });
+    }
 });
 
 $("#closeButton").click(function(){
@@ -243,10 +264,17 @@ $("#submitNewService").click(function(){
     var fd = new FormData();
     title=$("#EditFormTitle").val();
     descr=$("#EditFormDescr").val();
-    alert(title+descr);
+    //alert(title+descr);
     var files = $('#EditFormLogo')[0].files[0];
+    if(title.length==0||descr.length==0||$('#EditFormLogo').get(0).files.length === 0){
+        alert("Fields cannot be empty!");
+    }
+    // if ($('#EditFormLogo').get(0).files.length === 0){
+    //     alert("image field cannot be empty!");
+    // }
     //fd.append('file',files);
     //fd.append('id',id);
+    else{
 
     fd.append('file',files);
     fd.append('title',title);
@@ -270,6 +298,7 @@ $("#submitNewService").click(function(){
         }
        
     });
+    }
 });
 
 }));
