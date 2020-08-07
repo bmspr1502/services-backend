@@ -111,7 +111,7 @@ include 'admin/about/aboutusDetails.php';
           <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
             <div class="service d-flex h-100">
               <div class="svg-icon">
-                <img src="images/flaticon/svg/002-travel-1.svg" alt="Image" class="img-fluid">
+                <img src="services_logo/<?php echo $values[$x]['logo']?>" alt="Image" class="img-fluid">
               </div>
               <div class="service-about">
                 <h3><?php echo $values[$x]['title']?></h3>
@@ -128,7 +128,7 @@ include 'admin/about/aboutusDetails.php';
           <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
             <div class="service d-flex h-100">
               <div class="svg-icon">
-                <img src="images/flaticon/svg/<?php echo $values[$x]['logo'];?>" alt="Image" class="img-fluid">
+                <img src="services_logo/<?php echo $values[$x]['logo'];?>" alt="Image" class="img-fluid">
               </div>
               <div class="service-about">
                 <h3><?php echo $values[$x]['title'];?></h3>

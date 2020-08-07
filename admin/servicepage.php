@@ -58,7 +58,7 @@ $(".btnEdit").click(function(){
             //alert(data['id']);
            
            $("#ChangeId").text(data['id']);
-           $("#ChangeLogo").attr("src","../images/flaticon/svg/"+data['logo']);
+           $("#ChangeLogo").attr("src","../services_logo/"+data['logo']);
            $("#EditFormTitle").val(data['title']);
            $("#EditFormDescr").val(data['description']);
            putForm();
@@ -94,28 +94,66 @@ $("#btnEditLogo").click(function(){
 
 });
 $("#btnChangeLogo").click(function(){
-    var logoName=$("#EditFormLogo").val();
-    var logoAdd="../images/flaticon/svg/"+logoName;
-    var image=new Image();
-    image.src=logoAdd;
-    image.onload=function(){
-        //alert("loaded successfully");
-        $.post('services/ServiceLogoChange.php',{'logoName':logoName,id:$("#ChangeId").text()},function(data){
-            $("#ChangeLogo").attr("src",logoAdd);
-            //alert(data);
-            $("#EditFormLogo").css("display","none");
-            $("#btnChangeLogo").css("display","none");
-            temp=1;
+    // var logoName=$("#EditFormLogo").val();
+    // var logoAdd="../images/flaticon/svg/"+logoName;
+    // var image=new Image();
+    // image.src=logoAdd;
+    // image.onload=function(){
+    //     //alert("loaded successfully");
+    //     $.post('services/ServiceLogoChange.php',{'logoName':logoName,id:$("#ChangeId").text()},function(data){
+    //         $("#ChangeLogo").attr("src",logoAdd);
+    //         //alert(data);
+    //         
+    //         temp=1;
             
            
-        });
+    //     });
         
 
-    }
-    image.onerror=function(){
-        alert("check if image is present in svg folder");
-        putForm();
-    }
+    // }
+    // image.onerror=function(){
+    //     alert("check if image is present in svg folder");
+    //     putForm();
+    // }
+    //temp=1;
+    var id=$("#ChangeId").text();
+    var fd = new FormData();
+    var files = $('#EditFormLogo')[0].files[0];
+    fd.append('file',files);
+    fd.append('id',id);
+    $.ajax({
+            url: 'services/ServiceLogoChange.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+               // alert(response);
+                var arr=response.split(',');
+                //alert(arr);
+                temp=1;
+                if(arr[0]=="Successful"){
+                    alert(arr[0]);
+                    $("#ChangeLogo").attr("src","../services_logo/"+arr[1]);
+                   // $( '#iframe' ).attr( 'src',"../about_us.php");
+                   $("#EditFormLogo").attr("type","hidden");
+                   $("#btnChangeLogo").css("display","none");
+                //     $("#EditFormLogo").css("","hidden");
+                // $("#btnChangeLogo").css("display","hidden");
+                    
+
+
+                }
+                else{
+                    alert(response);
+                }
+               
+
+                
+
+            }});
+
+
 
 
 });
@@ -165,7 +203,7 @@ $(".btnDelete").click(function(){
     var id=$(this).val();
     alert(id);
     $.post('services/deleteService.php',{'id':id},function(data){
-       // alert(data);
+        alert(data);
         
         location.reload(true);
         
@@ -183,47 +221,58 @@ $("#btnAddService").click(function(){
     $("#btnEditLogo").css("display","none");
     $("#btnEditDescr").css("display","none");
     $("#btnEditTitle").css("display","none");
+    $("#EditFormDescr").val("");
+    $("#EditFormTitle").val("");
+    $("#EditFormLogo").val("");
+    $("#ChangeLogo").attr("src","");
     $("#EditFormDescr").attr("readonly",false);
     $("#EditFormTitle").attr("readonly",false);
     $("#EditFormLogo").css("display","block");
 
 
     $("#id01").css("display","block");
+    temp=1;
 
 });
 
 $("#submitNewService").click(function(){
     //$logo=$("#EditFormLogo").val();
-    var logoName=$("#EditFormLogo").val();
-    var logoAdd="../images/flaticon/svg/"+logoName;
-    var image=new Image();
-    image.src=logoAdd;
-    image.onload=function(){
+
+
+    //var id=$("#ChangeId").text();
+    var fd = new FormData();
     title=$("#EditFormTitle").val();
     descr=$("#EditFormDescr").val();
-    if(title.length==0||descr.length==0){
-        alert("title and description cannot be empty!");
-    }
-    else{
-    $.post("services/addService.php",{"logo":logoName,"title":title,"descr":descr},function(data){
-        //alert(data)
-        location.reload(true);
-        
+    alert(title+descr);
+    var files = $('#EditFormLogo')[0].files[0];
+    //fd.append('file',files);
+    //fd.append('id',id);
+
+    fd.append('file',files);
+    fd.append('title',title);
+    fd.append('desc',descr);
+    //alert(fd.get('title'));
+    //console.log(fd);
+    // $.post("services/addService.php",fd,function(data){
+    //     alert(data);
+    // });
+    $.ajax({
+        url: "services/addService.php",
+        type: "post",
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data){
+            alert(data);
+            $("#closeButton").click();
+            
+
+        }
+       
     });
-    }
-    }
-    image.onerror=function(){
-        alert("check if image is present in svg folder");
-    }
 });
 
-
-
-
-
 }));
-
-
 </script>
 <body>
 <div class="w3-sidebar w3-bar-block w3-black w3-collapse" style="width:10%">
@@ -264,7 +313,7 @@ for($x=0;$x<$len;$x++){
 <div class="card" style="width:350px" >
 
     <div class="card-body">
-    <img class="card-img-top" src="../images/flaticon/svg/<?php echo $row[$x]['logo'];?>" alt="Card image" style="width:40%">
+    <img class="card-img-top" src="../services_logo/<?php echo $row[$x]['logo'];?>" alt="Card image" style="width:40%">
       <h4 class="card-title"><?php echo $row[$x]['title']?></h4>
       <p class="card-text"><?php echo $row[$x]['description']?></p>
     <div class="w3-display-right">
@@ -312,8 +361,8 @@ for($x=0;$x<$len;$x++){
         <span  class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal" id="closeButton">&times;</span>
         <img id="ChangeLogo" src="" alt="LOGO" style="width:20%" class="w3-circle w3-margin-top" >
         <button type="button" class="w3-button w3-blue w3-section w3-padding w3-center" id="btnEditLogo" >Edit Logo</button>
-        <form class="w3-padding w3-center">
-        <input type="text" placeholder="xxxxx.svg/yyyyy.png" id="EditFormLogo"style="display:none">
+        <form class="w3-padding w3-center" enctype="multipart/form-data">
+        <input type="file" placeholder="xxxxx.svg/yyyyy.png" id="EditFormLogo"style="display:none" name="file">
         <button type="button" class="w3-button w3-green w3-section w3-padding w3-center" id="btnChangeLogo" style="display:none">Change Logo</button>
         </form>
         
