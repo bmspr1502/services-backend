@@ -164,8 +164,8 @@ if(!isset($_COOKIE['services'])){
                 <img src="services_logo/<?php echo $values[$x]['logo'];?>" alt="Image" class="img-fluid">
               </div>
               <div class="service-about">
-                <h3><?php echo $values[$x]['title'];?></h3>
-                <p><?php echo $values[$x]['description'];?></p>
+                <h3><?php echo stripslashes($values[$x]['title']);?></h3>
+                <p><?php echo stripslashes($values[$x]['description']);?></p>
               </div>
             </div>
           </div>

@@ -3,8 +3,8 @@
 include(dirname(__FILE__) . '/../DB.php');
 //$logo=$_POST["logo"];
 
-$title=$_POST["title"];
-$descr=$_POST["desc"];
+$title=$con->real_escape_string($_POST["title"]);
+$descr=$con->real_escape_string($_POST["desc"]);
 $filename=$_FILES['file']['name'];
 
 $location = "../../services_logo/".$filename;
