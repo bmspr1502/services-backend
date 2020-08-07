@@ -96,6 +96,10 @@ $('input[type="text"]')
     });
     $("#btnSubmitAboutImage").click(function(){
         var fd = new FormData();
+        if(!$("#imgForm").val()){
+            alert("Please select a image!");
+        }
+        else{
         var files = $('#imgForm')[0].files[0];
         fd.append('file',files);
 
@@ -144,6 +148,7 @@ $('input[type="text"]')
                 
 
             }});
+        }
 
 
     });
@@ -162,6 +167,11 @@ $('input[type="text"]')
     $(".1commit,.2commit,.3commit").click(function(){
         var id=$(this).val();
         var text=$("."+id).val();
+        if(text.length==0){
+            alert("Fields cannot be empty!");
+
+        }
+        else{
         //alert(text);
         if(id==1){
             $.post("about/aboutTitleChange.php",{"text":text},function(data){
@@ -188,6 +198,7 @@ $('input[type="text"]')
                 $( '#iframe' ).attr( 'src',"../about_us.php");
             });
         }
+    }
 
 
     });
@@ -202,6 +213,7 @@ $('input[type="text"]')
   <a href="homepage.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Home</a>
   <a href="aboutus.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">About Us</a>
   <a href="servicepage.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Services</a>
+  <a href="card.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Advertisement</a>
 </div>
 
 
