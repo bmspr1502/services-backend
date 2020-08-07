@@ -87,7 +87,7 @@ include 'admin/about/aboutusDetails.php';
           
           </div>
           <div class="col-lg-4">
-            <img src="<?php echo $row['image'];?>" alt="Image" class="img-fluid">
+            <img src="about_usImage/<?php echo $row['image'];?>" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4">
           <p><?php echo $row['rightcontent'];?></p>

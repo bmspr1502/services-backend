@@ -81,7 +81,7 @@ $('input[type="text"]')
     // resize on page load
     .each(resizeInput);
     $("#btnEditAboutImage").click(function(){
-        $("#imgForm").attr("type","text");
+        $("#imgForm").attr("type","file");
         $("#btnSubmitAboutImage").prop("disabled",false);
 
 
@@ -95,26 +95,55 @@ $('input[type="text"]')
 
     });
     $("#btnSubmitAboutImage").click(function(){
-        var imageAdd=$("#imgForm").val();
-        var image=new Image();
-        image.src="../"+imageAdd;
-        image.onload=function(){
-            $.post("about/AboutImageChange.php",{"image":imageAdd},function(data){
-               // alert(data);
-                $("#AboutImage").attr("src","../"+imageAdd);
+        var fd = new FormData();
+        var files = $('#imgForm')[0].files[0];
+        fd.append('file',files);
+
+
+        // var imageAdd=$("#imgForm").val();
+        // var image=new Image();
+        // image.src="../"+imageAdd;
+        // image.onload=function(){
+            // $.post("about/AboutImageChange.php",{"image":imageAdd},function(data){
+            //    // alert(data);
+            //     $("#AboutImage").attr("src","../"+imageAdd);
                 
-                $("#imgForm").attr("type","hidden");
-                $("#btnSubmitAboutImage").prop("disabled",true);
-                //document.getElementById("#iframe").contentDocument.location.reload(true);
-                $( '#iframe' ).attr( 'src',"../about_us.php");
+            //     $("#imgForm").attr("type","hidden");
+            //     $("#btnSubmitAboutImage").prop("disabled",true);
+            //     //document.getElementById("#iframe").contentDocument.location.reload(true);
+            //     $( '#iframe' ).attr( 'src',"../about_us.php");
 
 
 
-            });
-        }
-        image.onerror=function(){
-            alert("Ensure the image file is present in images folder!")
-        }
+           
+        // }
+        // image.onerror=function(){
+        //     alert("Ensure the image file is present in images folder!")
+        // }
+        $.ajax({
+            url: 'about/AboutImageChange.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                //alert(response);
+                var arr=response.split(',');
+                if(arr[0]=="Successful"){
+                    alert(arr[0]);
+                    $("#AboutImage").attr("src","../about_usImage/"+arr[1]);
+                    $( '#iframe' ).attr( 'src',"../about_us.php");
+                    $("#btnSubmitAboutImage").prop("disabled",true);
+                    $("#imgForm").attr("type","hidden");
+
+
+                }
+                else{
+                    alert(response);
+                }
+                
+
+            }});
 
 
     });
@@ -212,9 +241,9 @@ $('input[type="text"]')
 </div>
 <div class="w3-container w3-section" class="w3-mobile">
         
-        <img src="../<?php echo $row['image'];?>" width="65%" class="4" id="AboutImage">    
+        <img src="../about_usImage/<?php echo $row['image'];?>" width="65%" class="4" id="AboutImage">    
         <br><br>
-        <input type="hidden" id="imgForm" placeholder="image/xxxxx.jpg">
+        <input type="hidden" id="imgForm" placeholder="image/xxxxx.jpg" name="file">
         <button type=button value="4" class="w3-button w3-ripple w3-red"  id='btnEditAboutImage'>EDIT</button>
         <button type=button value="4" class="w3-button w3-ripple w3-cyan 4commit"  id='btnSubmitAboutImage' disabled>COMMIT</button>
 </form>   
