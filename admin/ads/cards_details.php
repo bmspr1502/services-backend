@@ -21,10 +21,10 @@ while($data = $result->fetch_assoc()){
     array_push($ads, $data);
     $i++;
     if($i==$min){
-        setcookie('ads1', json_encode($ads), time()+86400);
+        setcookie('ads1', json_encode($ads), time()+86400, '/');
         $ads = array();
     }else if($i==$rows){
-        setcookie('ads2', json_encode($ads), time()+86400);
+        setcookie('ads2', json_encode($ads), time()+86400, '/');
 
     }
 }

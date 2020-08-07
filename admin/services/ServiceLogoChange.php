@@ -64,7 +64,7 @@ else{
           //echo $row['logo'];
           //echo $result;
 
-               
+          setcookie('services', '', time()-3600, '/');
            
         }
         else{

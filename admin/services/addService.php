@@ -34,6 +34,7 @@ else{
         $result = $con->query($query);
         if($result){
            echo "Successful,";
+           setcookie('services', '', time()-3600, '/');
            //echo $filenamenew;
            //unlink($previousFileLocation);
         }

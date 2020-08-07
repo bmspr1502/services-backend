@@ -7,6 +7,7 @@ $query="UPDATE `servicepage` SET `title`='$title' WHERE id=$id";
 $result = $con->query($query);
 if($result){
    echo $id;
+   setcookie('services', '', time()-3600, '/');
 }
 else{
     echo 'Title Not Updated';

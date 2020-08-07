@@ -14,6 +14,7 @@ $query="DELETE FROM `servicepage` WHERE id=$id";
 $result = $con->query($query);
 if($result){
     echo "deleted";
+    setcookie('services', '', time()-3600, '/');
 }
 else{
     echo "not deleted";

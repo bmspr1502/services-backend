@@ -1,6 +1,27 @@
 <?php
 session_start();
-include 'admin/homepage/Homedetails.php';
+//include '../DB.php';
+if(isset($_POST['main_ref'])){
+  unset($_COOKIE['home']);
+  setcookie('home', '', time()-3600, '/');
+}
+if(!isset($_COOKIE['home'])){
+  include( dirname(__FILE__) . '/admin/DB.php');
+  $query='SELECT * FROM homepage';
+  $result = $con->query($query);
+  $row = $result->fetch_assoc();
+  setcookie('home', json_encode($row), time()+86400, '/');
+  header('Location: index.php');
+}else{
+  //echo "BOOOOOOO USING COOOKKIEEESSSS";
+  $row = json_decode($_COOKIE['home'], true);
+}
+if($row ){
+  $title=$row['title'];
+  $heading=$row['heading'];
+  $content=$row['content'];
+}
+
 include 'admin/ads/cards_details.php';
 ?>
 <!DOCTYPE html>
@@ -53,13 +74,19 @@ include 'admin/ads/cards_details.php';
     </div>
    
    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.html"><?php echo $title?></a>
+      <a class="navbar-brand h1" href="index.php"><?php echo $title?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
+          <li>
+          <!-- remove this form later -->
+          <form action="index.php" method="post">
+          <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
+          </form>
+          </li>
           <li class="nav-item p-10 active">
             <a class="nav-link" href="#">Home</a>
           </li>
@@ -78,7 +105,7 @@ include 'admin/ads/cards_details.php';
         <div class="row align-items-center justify-content-center">
 
           <div class="col-4">
-            <h1 class="m-0 site-logo"><a href="index.html">Services</a></h1>
+            <h1 class="m-0 site-logo"><a href="index.php">Services</a></h1>
           </div>
 
           <div class="col-8">

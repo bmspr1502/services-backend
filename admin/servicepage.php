@@ -26,7 +26,7 @@ jQuery($(document).ready(function (){
     function showIframe(){
     if (window.matchMedia("(min-width: 500px)").matches) {
         //alert("hurray");
-        $iframe.attr('src', "../about_us.php");
+        $iframe.attr('src', "../about_us.php#services-section");
     }
     }
     $(window).on('resize', showIframe);

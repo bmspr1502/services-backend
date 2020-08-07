@@ -42,6 +42,7 @@ else{
            echo "Successful,";
            echo $filenamenew;
            unlink($previousFileLocation);
+           setcookie('about', '', time()-3600, '/');
         }
         else{
           echo $result;

@@ -224,7 +224,7 @@ $('input[type="text"]')
 
 <div class="w3-container w3-section" class="w3-mobile" >
     <form id='frmHeading'>
-        <textarea cols="40" rows="10" id='txtAboutLeft' class='w3-large 2' placeholder='CONTENT' name='AboutLeft' readonly><?php echo $row['leftcontent'];?></textarea><br><br>
+        <textarea cols="40" rows="10" id='txtAboutLeft' class='w3-large 2' placeholder='CONTENT' name='AboutLeft' readonly><?php echo stripslashes($row['leftcontent']);?></textarea><br><br>
         <button type=button class="w3-button w3-ripple w3-red"  id='btnEditAboutLeft' value="2">EDIT</button>
         <button type=button class="w3-button w3-ripple w3-cyan 2commit"  id='btnSubmitAboutLeft' value="2" disabled>COMMIT</button>
 </form>
@@ -232,7 +232,7 @@ $('input[type="text"]')
 
 <div class="w3-container w3-section" class="w3-mobile">
     <form id='frmContent'>
-        <textarea cols="40" rows="10" placeholder="CONTENT" id="txtHomeRight" class='w3-large 3' name='AboutRight' readonly><?php echo $row['rightcontent'];?></textarea>
+        <textarea cols="40" rows="10" placeholder="CONTENT" id="txtHomeRight" class='w3-large 3' name='AboutRight' readonly><?php echo stripslashes($row['rightcontent']);?></textarea>
             
         <br><br>
         <button type=button value="3" class="w3-button w3-ripple w3-red"  id='btnEditAboutRight'>EDIT</button>

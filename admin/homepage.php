@@ -106,7 +106,7 @@ $('input[type="text"]')
 
 <div class="w3-container w3-section iframe-container" class="w3-mobile">
     <form action='homepage/HomeTitle.php' method=POST id='frmTitle'>
-        <input type=text value=<?php echo $title?> id='txtHomeTitle' class='w3-xxlarge' placeholder='TITLE' name='HomeTitle' readonly><br><br>
+        <input type=text value=<?php echo stripslashes($title);?> id='txtHomeTitle' class='w3-xxlarge' placeholder='TITLE' name='HomeTitle' readonly><br><br>
         <input type=button class="w3-button w3-ripple w3-red" value='EDIT' id='btnEditHomeTitle'>
         <input type=button class="w3-button w3-ripple w3-cyan" value='COMMIT' id='btnSubmitHomeTitle' disabled>
 
@@ -118,7 +118,7 @@ $('input[type="text"]')
 
 <div class="w3-container w3-section" class="w3-mobile" >
     <form action='homepage/HomeHeading.php' method='POST' id='frmHeading'>
-        <input type=text value="<?php echo $heading;?>" id='txtHomeHeading' class='w3-xlarge' placeholder='HEADING' name='HomeHeading' readonly><br><br>
+        <input type=text value="<?php echo stripslashes($heading);?>" id='txtHomeHeading' class='w3-xlarge' placeholder='HEADING' name='HomeHeading' readonly><br><br>
         <input type=button class="w3-button w3-ripple w3-red" value='EDIT' id='btnEditHomeHeading'>
         <input type=button class="w3-button w3-ripple w3-cyan" value='COMMIT' id='btnSubmitHomeHeading' disabled>
 </form>
@@ -126,7 +126,7 @@ $('input[type="text"]')
 
 <div class="w3-container w3-section" class="w3-mobile">
     <form action='homepage/HomeContent.php' method='POST' id='frmContent'>
-        <textarea cols="40" rows="10" placeholder="CONTENT" id="txtHomeContent" class='w3-large' name='HomeContent' readonly><?php echo $content;?></textarea>
+        <textarea cols="40" rows="10" placeholder="CONTENT" id="txtHomeContent" class='w3-large' name='HomeContent' readonly><?php echo stripslashes($content);?></textarea>
             
         <br><br>
         <input type=button class="w3-button w3-ripple w3-red" value='EDIT' id='btnEditHomeContent'>

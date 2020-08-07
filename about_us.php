@@ -1,6 +1,31 @@
 <?php
 include 'admin/services/servicedetails.php';
-include 'admin/about/aboutusDetails.php';
+
+if(isset($_POST['main_ref'])){
+  unset($_COOKIE['about']);
+  setcookie('about', '', time()-3600, '/');
+}
+
+if(isset($_POST['serv_ref'])){
+  unset($_COOKIE['services']);
+  setcookie('services', '', time()-3600, '/');
+}
+if(!isset($_COOKIE['about'])){
+  include 'admin/about/aboutusDetails.php';
+  setcookie('about', json_encode($row), time()+86400, '/');
+  header('Location: about_us.php');
+}else{
+  $row = json_decode($_COOKIE['about'], true);
+}
+
+if(!isset($_COOKIE['services'])){
+  include 'admin/services/servicedetails.php';
+  setcookie('services', json_encode($values), time()+86400, '/');
+  header('Location: about_us.php');
+}else{
+  $values = json_decode($_COOKIE['services'], true);
+  $len = count($values);
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +78,7 @@ include 'admin/about/aboutusDetails.php';
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.html">Services</a>
+      <a class="navbar-brand h1" href="index.php">Services</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,6 +101,10 @@ include 'admin/about/aboutusDetails.php';
     
 
     <div class="site-section" id="about-section">
+    <!-- remove this form later -->
+    <form action="about_us.php" method="post">
+          <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
+          </form>
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-4 position-relative">
@@ -98,12 +127,16 @@ include 'admin/about/aboutusDetails.php';
       </div>
     </div>
      <div class="site-section" id="services-section">
+     <form action="about_us.php" method="post">
+          <input class=" btn btn-outline-success" type="submit" name="serv_ref" value="ref services">
+          </form>
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-5 position-relative">
             <h2 class="section-title text-center mb-5">Services</h2>
           </div>
           <?php
+          
           for($x=0;$x<$len;$x++){
 
             if($x%2==0){

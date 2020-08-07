@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2020 at 09:48 PM
+-- Generation Time: Aug 07, 2020 at 04:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -40,7 +40,7 @@ CREATE TABLE `aboutus` (
 --
 
 INSERT INTO `aboutus` (`title`, `leftcontent`, `rightcontent`, `image`) VALUES
-('About Us', 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of ()()()', 'The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen\"\"\":\"\"\":\"\":', 'images/blog_3.jpg');
+('It ain\'t abt us', 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of ()()()\n\'\'\'\'\'\'\'\'\'', 'The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t \"\"\"\", \"\"\"\":::;\nsdfadsfa;sjdjf', '5f2d189200cfc4.63548556.jpg');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE `homepage` (
 --
 
 INSERT INTO `homepage` (`title`, `heading`, `content`) VALUES
-('SERVICE', 'We Advertise and market your product..', 'This is a website where you can advertise!\r\nThanks for visiting:):)\r\n\r\n\r\n');
+('SERVICE', 'We Advertise and market your product..', 'This is a website where you can advertise!\r\nThanks for visiting:)😁hello world hi there\r\n<br><i>lalalala</i>\r\nsdfa<br>\r\n<marquee>Just beat it</marquee>\r\n\'\'asdf\';asd\';lfja;sdf\'l;asdf\';alks\'\"\"\"\"\'\'\'\"');
 
 -- --------------------------------------------------------
 
@@ -113,9 +113,10 @@ CREATE TABLE `servicepage` (
 --
 
 INSERT INTO `servicepage` (`logo`, `title`, `description`, `id`) VALUES
-('006-food.svg', 'Digital Marketing', 'We market your products. And we provide all the resources too.', 5),
-('002-travel-1.svg', 'Socialmedia marketing', 'We advertise your products in social media.ha ha', 6),
-('004-travel-3.svg', 'Newspaper marketing', 'We  advertise your products in local newspapers..', 9);
+('5f2d34b0087475.54240732.svg', 'Digital Marketing', 'We market your products. And we provide all the resources too.', 5),
+('5f2d34c37540f9.12917834.svg', 'Socialmedia marketing', 'We advertise your products in social media.ha ha', 6),
+('5f2d34d56f0026.47969333.svg', 'Newspaper marketing', 'We  advertise your products in local newspapers..', 9),
+('5f2d59ec1c1d42.88936416.svg', 'Weird Marketing', 'Blah Blah Blah', 11);
 
 --
 -- Indexes for dumped tables
@@ -148,7 +149,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `servicepage`
 --
 ALTER TABLE `servicepage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
