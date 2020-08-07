@@ -1,6 +1,5 @@
 <?php
 include 'admin/services/servicedetails.php';
-//include 'admin/homepage/Homedetails.php';
 
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['about']);
@@ -18,13 +17,6 @@ if(!isset($_COOKIE['about'])){
 }else{
   $row = json_decode($_COOKIE['about'], true);
 }
-if(isset($_COOKIE['home'])){
-  $rowHome = json_decode($_COOKIE['home'], true);
-  $title2=$rowHome['title'];
-
-}else{
-include 'admin/homepage/Homedetails.php';
-}
 
 if(!isset($_COOKIE['services'])){
   include 'admin/services/servicedetails.php';
@@ -39,7 +31,7 @@ if(!isset($_COOKIE['services'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><?php echo $title2?></title>
+    <title>Services</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -86,7 +78,7 @@ if(!isset($_COOKIE['services'])){
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.php"><?php echo $title2?> </a>
+      <a class="navbar-brand h1" href="index.php">Services</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
