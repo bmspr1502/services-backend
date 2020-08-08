@@ -1,10 +1,17 @@
 <?php
 session_start();
+if(isset($_COOKIE['home'])){
+  $rowHome = json_decode($_COOKIE['home'], true);
+  $title=$rowHome['title'];
+
+}else{
+include 'admin/homepage/Homedetails.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Contact</title>
+    <title>Contact : <?php echo $title;?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -50,7 +57,7 @@ session_start();
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.php">Services</a>
+      <a class="navbar-brand h1" href="index.php"><?php echo $title;?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

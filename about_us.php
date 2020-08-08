@@ -41,7 +41,7 @@ if(!isset($_COOKIE['services'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><?php echo $title2?></title>
+    <title>About Us: <?php echo $title2?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
