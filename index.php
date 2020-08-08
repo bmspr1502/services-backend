@@ -1,28 +1,80 @@
 <?php
 session_start();
-//include '../DB.php';
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['home']);
   setcookie('home', '', time()-3600, '/');
 }
+
 if(!isset($_COOKIE['home'])){
-  include( dirname(__FILE__) . '/admin/DB.php');
+    
+  include 'admin/DB.php';
   $query='SELECT * FROM homepage';
   $result = $con->query($query);
   $row = $result->fetch_assoc();
   setcookie('home', json_encode($row), time()+86400, '/');
   header('Location: index.php');
+  
 }else{
-  //echo "BOOOOOOO USING COOOKKIEEESSSS";
   $row = json_decode($_COOKIE['home'], true);
+  
 }
-if($row ){
+if(isset($row) ){
   $title=$row['title'];
   $heading=$row['heading'];
   $content=$row['content'];
+  
 }
 
-include 'admin/ads/cards_details.php';
+/*
+
+if(isset($_POST['refresh'])){
+    unset($_COOKIE['ads1']);
+    //unset($_COOKIE['ads2']);
+    setcookie('ads1', '', time()-3600, '/');
+    //setcookie('ads2', '', time()-3600, '/');
+}
+
+if(!isset($_COOKIE['ads1'])) {
+*/
+include 'admin/DB.php';
+$query = "SELECT * FROM contact WHERE VISIBILITY = 1 LIMIT 12";
+$result = $con->query($query);
+//$i=0;
+$ads = array();
+$rows = $result->num_rows;
+//$min = (6<$rows)?6:$rows;
+while($data = $result->fetch_assoc()){
+    array_push($ads, $data);
+   /* $i++;
+    if($i==$min){
+        setcookie('ads1', json_encode($ads), time()+86400, '/');
+        $ads = array();
+    }else if($i==$rows){
+        setcookie('ads2', json_encode($ads), time()+86400, '/');
+
+    }
+    */
+    
+}
+//setcookie('ads1', json_encode($ads), time()+86400, '/');
+
+$con->close();
+/*
+header('Location: index.php');
+}else{
+$ads = json_decode($_COOKIE['ads1'], true);
+
+if(isset($_COOKIE['ads2'])){
+    $ads2 = json_decode($_COOKIE['ads2'], true); 
+    $ads = array_merge($ads, $ads2);
+
+    
+}
+
+}
+*/
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,9 +204,9 @@ include 'admin/ads/cards_details.php';
     </div>
 
 
-      <form action="index.php" method="post">
+      <!--form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-      </form>
+      </form -->
     
     <section class="site-section bg-light" id="blog-section">
 
