@@ -5,7 +5,7 @@ if(isset($_SESSION['user'])){
         header('Location: card.php');
     }else{
         unset($_SESSION['user']);
-        header('Location: signin.php');
+        header('Location: index.php');
     }
 }
 if(isset($_POST['signed'])){
@@ -26,7 +26,7 @@ if(isset($_POST['signed'])){
     <title>Login Into Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         body{
             height: 100vh;
@@ -42,7 +42,7 @@ if(isset($_POST['signed'])){
     <div class="card text-center" id="form">
     <h1>Admin Page Sign In</h1>
 
-        <form action="signin.php" method="post">
+        <form action="index.php" method="post">
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required>

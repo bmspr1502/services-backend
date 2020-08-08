@@ -33,8 +33,9 @@ else{
         $query="INSERT INTO `servicepage`(`logo`, `title`, `description`) VALUES('$filenamenew','$title','$descr')";
         $result = $con->query($query);
         if($result){
-           echo "Successful,";
-           setcookie('services', '', time()-3600, '/');
+         setcookie('services', '', time()-3600, '/');
+           echo "Successful";
+           
            //echo $filenamenew;
            //unlink($previousFileLocation);
         }
