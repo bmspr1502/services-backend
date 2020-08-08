@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             color: white;
             }
             </style>";
-            $message = $message . "</head><body><p style='text-align: center'>Your Ad details has been added to our database, to confirm it\'s visibility reply to this mail.</p><table><thead><tr><th>Label</th><th>Your Response</th></tr></thead><tbody>";
+            $message = $message . "</head><body><p style='text-align: center'>Your Ad details has been added to our database, to confirm it's visibility reply to this mail.</p><table><thead><tr><th>Label</th><th>Your Response</th></tr></thead><tbody>";
             $message = $message . "<tr><td>Name</td><td>" . $name . "</td></tr>";
             $message = $message . "<tr><td>Email</td><td>" . $email . "</td></tr>";
             $message = $message . "<tr><td>Phone</td><td>" . $phone . "</td></tr>";
@@ -88,7 +88,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
            $headers .= 'From: '.$from."\r\n".
                        'Reply-To: '.$from."\r\n" .
                         'X-Mailer: PHP/' . phpversion();
-                        
+
             if(mail($email, $subject, $message, $headers)){
                 echo "Mail sent successfully";
             }
