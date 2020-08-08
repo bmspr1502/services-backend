@@ -1,8 +1,4 @@
 <?php
-session_start();
-
-
-
 
 //include 'DB.php';
 include(dirname(__FILE__) . '/../DB.php');
