@@ -1,10 +1,11 @@
 <?php
 session_start();
+/*
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['home']);
   setcookie('home', '', time()-3600, '/');
 }
-
+*/
 if(!isset($_COOKIE['home'])){
     
   include 'admin/DB.php';
@@ -79,7 +80,7 @@ if(isset($_COOKIE['ads2'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Services</title>
+    <title><?php echo $title; ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -135,9 +136,9 @@ if(isset($_COOKIE['ads2'])){
         <ul class="navbar-nav">
           <li>
           <!-- remove this form later -->
-          <form action="index.php" method="post">
+          <!--form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
-          </form>
+          </form -->
           </li>
           <li class="nav-item p-10 active">
             <a class="nav-link" href="#">Home</a>

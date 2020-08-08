@@ -1,7 +1,15 @@
 <?php
-include 'admin/services/servicedetails.php';
-//include 'admin/homepage/Homedetails.php';
+if(isset($_COOKIE['home'])){
+  $rowHome = json_decode($_COOKIE['home'], true);
+  $title2=$rowHome['title'];
 
+}else{
+include 'admin/homepage/Homedetails.php';
+$title2 = $title;
+}
+
+include 'admin/services/servicedetails.php';
+/*
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['about']);
   setcookie('about', '', time()-3600, '/');
@@ -11,19 +19,13 @@ if(isset($_POST['serv_ref'])){
   unset($_COOKIE['services']);
   setcookie('services', '', time()-3600, '/');
 }
+*/
 if(!isset($_COOKIE['about'])){
   include 'admin/about/aboutusDetails.php';
   setcookie('about', json_encode($row), time()+86400, '/');
   header('Location: about_us.php');
 }else{
   $row = json_decode($_COOKIE['about'], true);
-}
-if(isset($_COOKIE['home'])){
-  $rowHome = json_decode($_COOKIE['home'], true);
-  $title2=$rowHome['title'];
-
-}else{
-include 'admin/homepage/Homedetails.php';
 }
 
 if(!isset($_COOKIE['services'])){
@@ -109,10 +111,10 @@ if(!isset($_COOKIE['services'])){
     
 
     <div class="site-section" id="about-section">
-    <!-- remove this form later -->
+    <!-- remove this form later 
     <form action="about_us.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
-          </form>
+          </form>-->
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-4 position-relative">
@@ -135,9 +137,9 @@ if(!isset($_COOKIE['services'])){
       </div>
     </div>
      <div class="site-section" id="services-section">
-     <form action="about_us.php" method="post">
+     <!--form action="about_us.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="serv_ref" value="ref services">
-          </form>
+          </form -->
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-5 position-relative">
