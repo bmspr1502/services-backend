@@ -149,6 +149,9 @@ if(isset($_COOKIE['ads2'])){
           <li class="nav-item p-10">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="admin/index.php" target="_blank">Admin</a>
+          </li>
         </ul>
         </div>
     </nav>

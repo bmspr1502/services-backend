@@ -1,5 +1,7 @@
 <?php
 session_start();
+$email = "admin@test.com";
+$password = "testing";
 if(isset($_SESSION['user'])){
     if($_SESSION['user']=='admin'){
         header('Location: card.php');
@@ -9,8 +11,7 @@ if(isset($_SESSION['user'])){
     }
 }
 if(isset($_POST['signed'])){
-    $email = "admin@test.com";
-    $password = "testing";
+   
 
     if($_POST['email']==$email && $_POST['pwd']==$password){
         $_SESSION['user'] = 'admin';
@@ -33,7 +34,7 @@ if(isset($_POST['signed'])){
             width: 100%;
         }
         #form{
-            top: 30vh;
+            top: 20vh;
         }
     </style>
 </head>
@@ -41,7 +42,12 @@ if(isset($_POST['signed'])){
 <div class="container" >
     <div class="card text-center" id="form">
     <h1>Admin Page Sign In</h1>
+        <div class="container text-center">
+        <p>For testing, the email and password is shown here:</p>
+        <p>Email: <?php echo $email;?></p>
 
+        <p>Password: <?php echo $password;?></p>
+        </div>
         <form action="index.php" method="post">
             <div class="form-group">
                 <label for="email">Email address:</label>
