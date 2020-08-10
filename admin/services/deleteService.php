@@ -6,10 +6,17 @@ $ImageQuery="SELECT `logo` FROM `servicepage` WHERE id=$id";
 $result1=$con->query($ImageQuery);
 $row=$result1->fetch_assoc();
 $imageFile=$row['logo'];
-$location="../../services_logo".$imageFile;
+$location="../../services_logo/".$imageFile;
+echo $location;
+//chmod($location, 0777);
 if(file_exists($location)){
-    unlink($location);
+ unlink($location);
 }
+
+// if(file_exists($location)){
+//     chmod($location, 0777);
+//     unlink($location);
+// }
 $query="DELETE FROM `servicepage` WHERE id=$id";
 $result = $con->query($query);
 if($result){
