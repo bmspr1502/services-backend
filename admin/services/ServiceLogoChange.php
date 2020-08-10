@@ -55,6 +55,7 @@ else{
         //    echo "Successful,";
         //    echo $filenamenew;
         if(file_exists($previousFileLocation)){
+          chmod($previousFileLocation, 0644);
            unlink($previousFileLocation);
         }
         //    $query="SELECT 'logo' FROM 'servicepage' WHERE 'id'";
