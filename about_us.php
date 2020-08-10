@@ -243,11 +243,11 @@ if(!isset($_COOKIE['services'])){
     <footer class="site-section bg-light ">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-3">
-            <h3 class="footer-title">For Advertising<br> click below </h3>
+          <div class="col-md-4">
+            <h3 class="footer-title">For Advertising<br>  </h3>
             <p><a class="btn bule" href="contact.php">Contact Us</a></p>
           </div>
-          <div class="col-md-5 mx-auto">
+          <!-- <div class="col-md-5 mx-auto">
             <div class="row">
               <div class="col-lg-4">
                 <h3 class="footer-title">Services</h3>
@@ -274,8 +274,14 @@ if(!isset($_COOKIE['services'])){
                 </ul>
               </div>
             </div>
+          </div> -->
+          <div class="col-md-4">
+            <blockquote class="blockquote">
+           "Don’t find customers for your product. Find products for your customer"
+           <footer class="blockquote-footer">Seth Godin</footer>
+           </blockquote>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <h3 class="footer-title">Follow Me</h3>
             <a href="#" class="social-circle m-2"><span class="icon-twitter"></span></a>
             <a href="#" class="social-circle m-2"><span class="icon-facebook"></span></a>
