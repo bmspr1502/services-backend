@@ -55,17 +55,19 @@ else{
         //    echo "Successful,";
         //    echo $filenamenew;
         if(file_exists($previousFileLocation)){
+          chmod($previousFileLocation, 0644);
            unlink($previousFileLocation);
         }
         //    $query="SELECT 'logo' FROM 'servicepage' WHERE 'id'";
         //    $result = $con->query($query);
         //     $row = $result->fetch_assoc();
+        setcookie('services', '', time()-3600, '/');
         echo "Successful,";
         echo $filenamenew;
           //echo $row['logo'];
           //echo $result;
 
-          setcookie('services', '', time()-3600, '/');
+          
            
         }
         else{

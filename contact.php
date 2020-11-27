@@ -1,10 +1,17 @@
 <?php
 session_start();
+if(isset($_COOKIE['home'])){
+  $rowHome = json_decode($_COOKIE['home'], true);
+  $title=$rowHome['title'];
+
+}else{
+include 'admin/homepage/Homedetails.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Contact</title>
+    <title>Contact : <?php echo $title;?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -50,7 +57,7 @@ session_start();
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.php">Services</a>
+      <a class="navbar-brand h1" href="index.php"><?php echo $title;?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,6 +73,9 @@ session_start();
       
           <li class="nav-item active p-10">
             <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="admin/index.php" target="_blank">Admin</a>
           </li>
         </ul>
         </div>
@@ -202,11 +212,11 @@ session_start();
     <footer class="site-section bg-light footer">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <h3 class="footer-title">Services</h3>
             <p><span class="d-inline-block d-md-block">203 Fake St. Mountain View,</span> San Francisco, California, USA</p>
           </div>
-          <div class="col-md-5 mx-auto">
+          <!-- <div class="col-md-5 mx-auto">
             <div class="row">
               <div class="col-lg-4">
                 <h3 class="footer-title">Services</h3>
@@ -233,8 +243,14 @@ session_start();
                 </ul>
               </div>
             </div>
+          </div> -->
+          <div class="col-md-4">
+            <blockquote class="blockquote">
+           "Don’t find customers for your product. Find products for your customer"
+           <footer class="blockquote-footer">Seth Godin</footer>
+           </blockquote>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <h3 class="footer-title">Follow Me</h3>
             <a href="#" class="social-circle m-2"><span class="icon-twitter"></span></a>
             <a href="#" class="social-circle m-2"><span class="icon-facebook"></span></a>

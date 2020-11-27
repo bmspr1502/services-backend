@@ -39,10 +39,15 @@ else{
         $query="UPDATE `aboutus` SET `image`='$filenamenew' WHERE 1";
         $result = $con->query($query);
         if($result){
+         setcookie('about', '', time()-3600, '/');
            echo "Successful,";
            echo $filenamenew;
-           unlink($previousFileLocation);
-           setcookie('about', '', time()-3600, '/');
+           if(file_exists($previousFileLocation)){
+            chmod($previousFileLocation, 0644);
+            unlink($previousFileLocation);
+           }
+           
+           
         }
         else{
           echo $result;

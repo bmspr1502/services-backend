@@ -50,6 +50,49 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $query = "INSERT INTO contact (name,email,phone,image,product,brand,description,youtube,website)" .
             " VALUES ('$name', '$email', '$phone', '$filenamenew', '$product', '$brand', '$description', '$youtube', '$website')";
     if ($con->query($query)) {
+        
+            $subject = "Thankyou for contacting us!!";
+            $message = "<!doctype html><html><head>";
+            $message = $message . "<style>
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+            th, td {
+            text-align: left;
+            padding: 8px;
+            }
+            tr:nth-child(even){background-color: #f2f2f2}
+            th {
+            background-color: #4CAF50;
+            color: white;
+            }
+            </style>";
+            $message = $message . "</head><body><p style='text-align: center'>Your Ad details has been added to our database, to confirm it's visibility reply to this mail.</p><table><thead><tr><th>Label</th><th>Your Response</th></tr></thead><tbody>";
+            $message = $message . "<tr><td>Name</td><td>" . $name . "</td></tr>";
+            $message = $message . "<tr><td>Email</td><td>" . $email . "</td></tr>";
+            $message = $message . "<tr><td>Phone</td><td>" . $phone . "</td></tr>";
+            $message = $message . "<tr><td>Product</td><td>" . $product . "</td></tr>";
+            $message = $message . "<tr><td>Brand</td><td>" . $brand . "</td></tr>";
+            $message = $message . "<tr><td>Description</td><td>" . $description . "</td></tr>";
+            $message = $message . "<tr><td>Youtube</td><td><a href='" . $youtube ."' target='_blank'>".$youtube."</a></td></tr>";
+            $message = $message . "<tr><td>Website</td><td><a href='" . $website ."' target='_blank'>".$website."</a></td></tr>";
+            $message = $message . "</tbody></table></body></html>";
+            
+            $from = 'ratchabala@gmail.com';
+             $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+ 
+            // Create email headers
+            $headers .= 'From: '.$from."\r\n".
+                        'Reply-To: '.$from."\r\n" .
+                         'X-Mailer: PHP/' . phpversion();
+            if(mail($email, $subject, $message, $headers)){
+                echo "Mail sent successfully";
+            }
+            else{
+                echo "Cannot send the mail";
+            }
         echo "<script>";
         echo "alert('Details sent to database successfully!!');";
         echo "window.location.href = 'index.php';";

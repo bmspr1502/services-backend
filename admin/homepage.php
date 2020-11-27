@@ -1,6 +1,11 @@
 <?php
 session_start();
-//include 'homepage/Homedetails.php';
+if(isset($_POST['signout'])){
+    unset($_SESSION['user']);
+  }
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}else if($_SESSION['user']=='admin'){
 include 'homepage/Homedetails.php'
 ?>
 <!DOCTYPE html>
@@ -93,7 +98,9 @@ $('input[type="text"]')
   <a href="aboutus.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">About Us</a>
   <a href="servicepage.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Services</a>
   <a href="card.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Advertisement</a>
-
+  <form action="homepage.php" method="post">
+    <input type="submit" class="w3-bar-item w3-button w3-green" value="Sign Out" name="signout">
+    </form>
 </div>
 
 
@@ -153,4 +160,6 @@ $('input[type="text"]')
 <!-- Overlay -->
 <!-- <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer"></div> -->
 </body>
-
+<?php
+}
+?>

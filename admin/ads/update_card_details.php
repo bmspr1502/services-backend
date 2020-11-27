@@ -11,7 +11,7 @@ if(isset($_POST['update'])) {
     $website = $con->real_escape_string($_POST["website"]);
     $earlier_image = $_POST['earlier_image'];
 
-    $query = "UPDATE contact SET name='$name', phone = '$phone', brand = '$brand', description = '$description', " .
+    $query = "UPDATE contact SET name='$name', phone = '$phone',product='$product', brand = '$brand', description = '$description', " .
             "youtube = '$youtube', website = '$website' WHERE id = $id";
     $file = $_FILES["image"];
     
@@ -31,8 +31,8 @@ if(isset($_POST['update'])) {
                 $filenamenew = uniqid('', true) . "." . $fileactualext;
                 $filedestination = '../../uploaded_images/' . $filenamenew;
                 if(move_uploaded_file($filetmp, $filedestination)) {
-                    $query = "UPDATE contact SET name='$name',phone = '$phone', brand = '$brand', description = '$description', " .
-                        "image = '$filenamenew', youtube = '$youtube', website = '$website' WHERE id = $id";
+                    $query = "UPDATE contact SET name='$name',phone = '$phone',product='$product', brand = '$brand', description = '$description', " .
+                        "image = '$filenamenew', youtube = '$youtube',  website = '$website' WHERE id = $id";
                     unlink('../../uploaded_images/' . $earlier_image);
                 }else{
                     echo "<script>";

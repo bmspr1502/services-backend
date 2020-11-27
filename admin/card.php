@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(isset($_POST['signout'])){
+  unset($_SESSION['user']);
+}
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}else if($_SESSION['user']=='admin'){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +15,7 @@ session_start();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post</title>
+    <title>CARDS</title>
     <style>
 
 .header {
@@ -56,6 +62,11 @@ session_start();
 .sticky + .content {
   padding-top: 60px;
 }
+.w3-right{
+  float: right;
+  padding: 5px;
+  background-color: #ddd;
+}
 </style>
 </head>
 
@@ -65,6 +76,9 @@ session_start();
     <a href="aboutus.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">About Us</a>
     <a href="servicepage.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Services</a>
     <a href="card.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Advertisement</a>
+    <form action="card.php" method="post">
+    <input type="submit" class="w3-bar-item w3-button w3-green w3-right" value="Sign Out" name="signout">
+    </form>
 </div>
 
 <div class="container-fluid">
@@ -108,3 +122,5 @@ session_start();
 </script>
 </body>
 </html>
+<?php
+}

@@ -1,16 +1,17 @@
 <?php
 session_start();
+$email = "admin@test.com";
+$password = "testing";
 if(isset($_SESSION['user'])){
     if($_SESSION['user']=='admin'){
         header('Location: card.php');
     }else{
         unset($_SESSION['user']);
-        header('Location: signin.php');
+        header('Location: index.php');
     }
 }
 if(isset($_POST['signed'])){
-    $email = "admin@test.com";
-    $password = "testing";
+   
 
     if($_POST['email']==$email && $_POST['pwd']==$password){
         $_SESSION['user'] = 'admin';
@@ -26,14 +27,14 @@ if(isset($_POST['signed'])){
     <title>Login Into Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         body{
             height: 100vh;
             width: 100%;
         }
         #form{
-            top: 30vh;
+            top: 20vh;
         }
     </style>
 </head>
@@ -41,8 +42,13 @@ if(isset($_POST['signed'])){
 <div class="container" >
     <div class="card text-center" id="form">
     <h1>Admin Page Sign In</h1>
+        <div class="container text-center">
+        <p>For testing, the email and password is shown here:</p>
+        <p>Email: <?php echo $email;?></p>
 
-        <form action="signin.php" method="post">
+        <p>Password: <?php echo $password;?></p>
+        </div>
+        <form action="index.php" method="post">
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required>

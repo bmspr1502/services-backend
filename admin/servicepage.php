@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(isset($_POST['signout'])){
+    unset($_SESSION['user']);
+  }
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}else if($_SESSION['user']=='admin'){
 include 'services/servicedetails.php';
 
 
@@ -309,6 +316,9 @@ $("#submitNewService").click(function(){
   <a href="aboutus.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">About Us</a>
   <a href="servicepage.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Services</a>
   <a href="card.php" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-large w3-myfont">Advertisement</a>
+  <form action="servicepage.php" method="post">
+    <input type="submit" class="w3-bar-item w3-button w3-green w3-right" value="Sign Out" name="signout">
+    </form>
 </div>
 
 <div class="w3-container" style="margin-left:10%">
@@ -426,7 +436,9 @@ for($x=0;$x<$len;$x++){
 
 
 </body>
-
+<?php
+}
+?>
 
 
 

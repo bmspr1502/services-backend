@@ -1,33 +1,86 @@
 <?php
 session_start();
-//include '../DB.php';
+/*
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['home']);
   setcookie('home', '', time()-3600, '/');
 }
+*/
 if(!isset($_COOKIE['home'])){
-  include( dirname(__FILE__) . '/admin/DB.php');
+    
+  include 'admin/DB.php';
   $query='SELECT * FROM homepage';
   $result = $con->query($query);
   $row = $result->fetch_assoc();
   setcookie('home', json_encode($row), time()+86400, '/');
   header('Location: index.php');
+  
 }else{
-  //echo "BOOOOOOO USING COOOKKIEEESSSS";
   $row = json_decode($_COOKIE['home'], true);
+  
 }
-if($row ){
+if(isset($row) ){
   $title=$row['title'];
   $heading=$row['heading'];
   $content=$row['content'];
+  
 }
 
-include 'admin/ads/cards_details.php';
+/*
+
+if(isset($_POST['refresh'])){
+    unset($_COOKIE['ads1']);
+    //unset($_COOKIE['ads2']);
+    setcookie('ads1', '', time()-3600, '/');
+    //setcookie('ads2', '', time()-3600, '/');
+}
+
+if(!isset($_COOKIE['ads1'])) {
+*/
+include 'admin/DB.php';
+$query = "SELECT * FROM contact WHERE VISIBILITY = 1 LIMIT 12";
+$result = $con->query($query);
+//$i=0;
+$ads = array();
+$rows = $result->num_rows;
+//$min = (6<$rows)?6:$rows;
+while($data = $result->fetch_assoc()){
+    array_push($ads, $data);
+   /* $i++;
+    if($i==$min){
+        setcookie('ads1', json_encode($ads), time()+86400, '/');
+        $ads = array();
+    }else if($i==$rows){
+        setcookie('ads2', json_encode($ads), time()+86400, '/');
+
+    }
+    */
+    
+}
+//setcookie('ads1', json_encode($ads), time()+86400, '/');
+
+$con->close();
+/*
+header('Location: index.php');
+}else{
+$ads = json_decode($_COOKIE['ads1'], true);
+
+if(isset($_COOKIE['ads2'])){
+    $ads2 = json_decode($_COOKIE['ads2'], true); 
+    $ads = array_merge($ads, $ads2);
+
+    
+}
+
+}
+*/
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Services</title>
+    <title><?php echo $title; ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -83,9 +136,9 @@ include 'admin/ads/cards_details.php';
         <ul class="navbar-nav">
           <li>
           <!-- remove this form later -->
-          <form action="index.php" method="post">
+          <!--form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
-          </form>
+          </form -->
           </li>
           <li class="nav-item p-10 active">
             <a class="nav-link" href="#">Home</a>
@@ -95,6 +148,9 @@ include 'admin/ads/cards_details.php';
           </li>
           <li class="nav-item p-10">
             <a class="nav-link" href="contact.php">Contact</a>
+          </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="admin/index.php" target="_blank">Admin</a>
           </li>
         </ul>
         </div>
@@ -152,9 +208,9 @@ include 'admin/ads/cards_details.php';
     </div>
 
 
-      <form action="index.php" method="post">
+      <!--form action="index.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
-      </form>
+      </form -->
     
     <section class="site-section bg-light" id="blog-section">
 
@@ -194,11 +250,11 @@ include 'admin/ads/cards_details.php';
     <footer class="site-section bg-light">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-3">
-            <h3 class="footer-title">For Advertising<br> click below </h3>
+          <div class="col-md-4">
+            <h3 class="footer-title">For Advertising<br><br>
             <p><a class="btn bule" href="contact.php">Contact Us</a></p>
           </div>
-          <div class="col-md-5 mx-auto">
+          <!-- <div class="col-md-5 mx-auto">
             <div class="row">
               <div class="col-lg-4">
                 <h3 class="footer-title">Services</h3>
@@ -224,9 +280,16 @@ include 'admin/ads/cards_details.php';
                   <li>Copywriting</li>
                 </ul>
               </div>
-            </div>
+            </div> -->
+            <div class="col-md-4">
+            <blockquote class="blockquote">
+           "Don’t find customers for your product. Find products for your customer"
+           <footer class="blockquote-footer">Seth Godin</footer>
+           </blockquote>
           </div>
-          <div class="col-md-3">
+          
+          
+          <div class="col-md-4">
             <h3 class="footer-title">Follow Me</h3>
             <a href="#" class="social-circle m-2"><span class="icon-twitter"></span></a>
             <a href="#" class="social-circle m-2"><span class="icon-facebook"></span></a>
@@ -234,6 +297,7 @@ include 'admin/ads/cards_details.php';
             <a href="#" class="social-circle m-2"><span class="icon-dribbble"></span></a>
             <a href="#" class="social-circle m-2"><span class="icon-linkedin"></span></a>
           </div>
+        </div>
         </div>
 
         <div class="row">

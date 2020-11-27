@@ -1,6 +1,15 @@
 <?php
-include 'admin/services/servicedetails.php';
+if(isset($_COOKIE['home'])){
+  $rowHome = json_decode($_COOKIE['home'], true);
+  $title2=$rowHome['title'];
 
+}else{
+include 'admin/homepage/Homedetails.php';
+$title2 = $title;
+}
+
+include 'admin/services/servicedetails.php';
+/*
 if(isset($_POST['main_ref'])){
   unset($_COOKIE['about']);
   setcookie('about', '', time()-3600, '/');
@@ -10,6 +19,7 @@ if(isset($_POST['serv_ref'])){
   unset($_COOKIE['services']);
   setcookie('services', '', time()-3600, '/');
 }
+*/
 if(!isset($_COOKIE['about'])){
   include 'admin/about/aboutusDetails.php';
   setcookie('about', json_encode($row), time()+86400, '/');
@@ -31,7 +41,7 @@ if(!isset($_COOKIE['services'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Services</title>
+    <title>About Us: <?php echo $title2?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -78,7 +88,7 @@ if(!isset($_COOKIE['services'])){
     </div>
    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bule">
-      <a class="navbar-brand h1" href="index.php">Services</a>
+      <a class="navbar-brand h1" href="index.php"><?php echo $title2?> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -94,6 +104,9 @@ if(!isset($_COOKIE['services'])){
           <li class="nav-item p-10">
             <a class="nav-link" href="contact.php">Contact</a>
           </li>
+          <li class="nav-item p-10">
+            <a class="nav-link" href="admin/index.php" target="_blank">Admin</a>
+          </li>
         </ul>
         </div>
     </nav>
@@ -101,10 +114,10 @@ if(!isset($_COOKIE['services'])){
     
 
     <div class="site-section" id="about-section">
-    <!-- remove this form later -->
+    <!-- remove this form later 
     <form action="about_us.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="main_ref" value="ref">
-          </form>
+          </form>-->
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-4 position-relative">
@@ -127,9 +140,9 @@ if(!isset($_COOKIE['services'])){
       </div>
     </div>
      <div class="site-section" id="services-section">
-     <form action="about_us.php" method="post">
+     <!--form action="about_us.php" method="post">
           <input class=" btn btn-outline-success" type="submit" name="serv_ref" value="ref services">
-          </form>
+          </form -->
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-5 position-relative">
@@ -230,11 +243,11 @@ if(!isset($_COOKIE['services'])){
     <footer class="site-section bg-light ">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-md-3">
-            <h3 class="footer-title">For Advertising<br> click below </h3>
+          <div class="col-md-4">
+            <h3 class="footer-title">For Advertising<br>  </h3>
             <p><a class="btn bule" href="contact.php">Contact Us</a></p>
           </div>
-          <div class="col-md-5 mx-auto">
+          <!-- <div class="col-md-5 mx-auto">
             <div class="row">
               <div class="col-lg-4">
                 <h3 class="footer-title">Services</h3>
@@ -261,8 +274,14 @@ if(!isset($_COOKIE['services'])){
                 </ul>
               </div>
             </div>
+          </div> -->
+          <div class="col-md-4">
+            <blockquote class="blockquote">
+           "Don’t find customers for your product. Find products for your customer"
+           <footer class="blockquote-footer">Seth Godin</footer>
+           </blockquote>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <h3 class="footer-title">Follow Me</h3>
             <a href="#" class="social-circle m-2"><span class="icon-twitter"></span></a>
             <a href="#" class="social-circle m-2"><span class="icon-facebook"></span></a>
